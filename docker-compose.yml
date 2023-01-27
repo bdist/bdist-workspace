@@ -1,0 +1,38 @@
+version: '3'
+
+volumes:
+  pgdata: {}
+  pgadmindata: {}
+
+services:
+
+  postgres:
+    image: postgres:15.1
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data:Z
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+      - ./data:/tmp/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    env_file:
+      - ./.envs/.postgres
+    ports:
+      - "5432:5432"
+  
+  pgadmin4:
+    image: dpage/pgadmin4:6.19
+    restart: always
+    volumes:
+      - pgadmindata:/var/lib/pgadmin
+    environment:
+      - PGADMIN_LISTEN_PORT=5050
+      - PGADMIN_DEFAULT_EMAIL=pgadmin@tecnico.pt
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin
+    env_file:
+      - ./.envs/.pgadmin4
+    ports:
+      - "5050:5050"
+

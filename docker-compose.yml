@@ -36,3 +36,8 @@ services:
     ports:
       - "5050:5050"
 
+  sqlalchemy:
+    build:
+      context: .
+      dockerfile: ./compose/sqlalchemy/Dockerfile
+    image: sqlalchemy

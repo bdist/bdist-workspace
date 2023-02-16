@@ -7,7 +7,7 @@ volumes:
 services:
 
   postgres:
-    image: postgres:15.1
+    image: postgres:15.2
     restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data:Z
@@ -23,7 +23,7 @@ services:
       - "5432:5432"
   
   pgadmin4:
-    image: dpage/pgadmin4:6.19
+    image: dpage/pgadmin4:6.20
     restart: always
     volumes:
       - pgadmindata:/var/lib/pgadmin

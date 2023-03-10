@@ -7,7 +7,9 @@ volumes:
 services:
 
   postgres:
-    image: postgres:15.2
+    build:
+      context: .
+      dockerfile: ./compose/postgres/Dockerfile
     restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data:Z
@@ -23,7 +25,7 @@ services:
       - "5432:5432"
   
   pgadmin4:
-    image: dpage/pgadmin4:6.20
+    image: dpage/pgadmin4:6.21
     restart: always
     volumes:
       - pgadmindata:/var/lib/pgadmin

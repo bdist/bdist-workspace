@@ -15,12 +15,10 @@ services:
       - ./data:/tmp/data
       - pgdata:/var/lib/postgresql/data:Z
       - .docker/postgres/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
     env_file:
       - ./.env/.postgres
+    environment:
+      POSTGRES_DB: postgres
     ports:
       - "5432:5432"
     networks:
@@ -35,12 +33,10 @@ services:
       - postgres
     volumes:
       - pgadmindata:/var/lib/pgadmin
-    environment:
-      - PGADMIN_LISTEN_PORT=5050
-      - PGADMIN_DEFAULT_EMAIL=pgadmin@tecnico.pt
-      - PGADMIN_DEFAULT_PASSWORD=pgadmin
     env_file:
       - ./.env/.pgadmin
+    environment:
+      PGADMIN_LISTEN_PORT: 5050
     ports:
       - "5050:5050"
     networks:

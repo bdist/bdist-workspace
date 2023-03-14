@@ -23,10 +23,14 @@ services:
       - ./.envs/.postgres
     ports:
       - "5432:5432"
+    networks:
+      - app-network
   
-  pgadmin4:
+  pgadmin:
     image: dpage/pgadmin4:6.21
     restart: always
+    depends_on:
+      - postgres
     volumes:
       - pgadmindata:/var/lib/pgadmin
     environment:
@@ -34,12 +38,21 @@ services:
       - PGADMIN_DEFAULT_EMAIL=pgadmin@tecnico.pt
       - PGADMIN_DEFAULT_PASSWORD=pgadmin
     env_file:
-      - ./.envs/.pgadmin4
+      - ./.envs/.pgadmin
     ports:
       - "5050:5050"
+    networks:
+      - app-network
 
-  sqlalchemy:
+  python:
     build:
       context: .
-      dockerfile: ./compose/sqlalchemy/Dockerfile
-    image: sqlalchemy
+      dockerfile: ./compose/python/Dockerfile
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

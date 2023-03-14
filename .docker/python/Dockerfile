@@ -1,8 +1,5 @@
 FROM python:3.11.2
 
-# Makes the default answers be used for all questions
-ARG DEBIAN_FRONTEND=noninteractive
-
 # Install missing Debian packages
 COPY install-packages.sh .
 RUN ./install-packages.sh

@@ -8,19 +8,19 @@ services:
 
   postgres:
     build:
-      context: .
-      dockerfile: ./compose/postgres/Dockerfile
+      context: ./.docker/postgres/
+      dockerfile: Dockerfile
     restart: always
     volumes:
-      - pgdata:/var/lib/postgresql/data:Z
-      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
       - ./data:/tmp/data
+      - pgdata:/var/lib/postgresql/data:Z
+      - .docker/postgres/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     env_file:
-      - ./.envs/.postgres
+      - ./.env/.postgres
     ports:
       - "5432:5432"
     networks:
@@ -28,8 +28,8 @@ services:
   
   pgadmin:
     build:
-      context: .
-      dockerfile: ./compose/pgadmin/Dockerfile
+      context: ./.docker/pgadmin/
+      dockerfile: Dockerfile
     restart: always
     depends_on:
       - postgres
@@ -40,7 +40,7 @@ services:
       - PGADMIN_DEFAULT_EMAIL=pgadmin@tecnico.pt
       - PGADMIN_DEFAULT_PASSWORD=pgadmin
     env_file:
-      - ./.envs/.pgadmin
+      - ./.env/.pgadmin
     ports:
       - "5050:5050"
     networks:
@@ -48,8 +48,8 @@ services:
 
   python:
     build:
-      context: .
-      dockerfile: ./compose/python/Dockerfile
+      context: ./.docker/python/
+      dockerfile: Dockerfile
     depends_on:
       - postgres
     networks:

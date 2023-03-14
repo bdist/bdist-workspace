@@ -1,3 +1,5 @@
+wheel
+packaging==23
 cython>=0.29.24
 SQLAlchemy==2.0.6
 psycopg==3.1.8

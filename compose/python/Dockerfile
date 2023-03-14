@@ -4,7 +4,8 @@ FROM python:3.11.2
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install missing Debian packages
-# RUN apt-get update && apt-get install less -y
+COPY install-packages.sh .
+RUN ./install-packages.sh
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1

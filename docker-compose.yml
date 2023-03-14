@@ -27,7 +27,9 @@ services:
       - app-network
   
   pgadmin:
-    image: dpage/pgadmin4:6.21
+    build:
+      context: .
+      dockerfile: ./compose/pgadmin/Dockerfile
     restart: always
     depends_on:
       - postgres

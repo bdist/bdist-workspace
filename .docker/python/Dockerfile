@@ -1,4 +1,4 @@
-FROM python:3.11.2-slim-bullseye
+FROM python:3.10.9-slim-bullseye
 
 # Install missing Debian packages
 COPY install-packages.sh .

@@ -42,10 +42,24 @@ services:
     networks:
       - app-network
 
+  notebook:
+    build:
+      context: ./.docker/notebook/
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "8888:8888"
+    networks:
+      - app-network
+
   python:
     build:
       context: ./.docker/python/
       dockerfile: Dockerfile
+    volumes:
+      - ./work:/home/jovyan/work
     depends_on:
       - postgres
     networks:

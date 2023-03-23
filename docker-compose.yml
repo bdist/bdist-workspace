@@ -47,6 +47,8 @@ services:
       context: ./.docker/notebook/
       dockerfile: Dockerfile
     restart: always
+    volumes:
+      - ./work:/home/jovyan/work
     depends_on:
       - postgres
     ports:
@@ -58,8 +60,6 @@ services:
     build:
       context: ./.docker/python/
       dockerfile: Dockerfile
-    volumes:
-      - ./work:/home/jovyan/work
     depends_on:
       - postgres
     networks:

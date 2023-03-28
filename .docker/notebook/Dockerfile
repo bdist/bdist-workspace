@@ -12,6 +12,8 @@ USER ${NB_UID}
 
 # Install Python 3 packages
 RUN mamba install --yes \
+    'black' \
+    'isort' \
     'psycopg' \
     'psycopg-c' && \
     mamba clean --all -f -y && \
@@ -20,5 +22,6 @@ RUN mamba install --yes \
 
 # Install Python 3 packages (not available via mamba)
 RUN pip install --quiet --no-cache-dir \
-    'ipython-sql' && \
+    'ipython-sql' \
+    'jupyterlab-code-formatter' && \
     fix-permissions "/home/${NB_USER}"

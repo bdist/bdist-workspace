@@ -14,9 +14,9 @@ services:
       - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
       - ./data:/tmp/data
     environment:
-      - POSTGRES_USER: postgres
-      - POSTGRES_PASSWORD: postgres
-      - POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
     ports:
       - "5432:5432"
     networks:
@@ -30,8 +30,8 @@ services:
     volumes:
       - pgadmindata:/var/lib/pgadmin
     environment:
-      - PGADMIN_DEFAULT_EMAIL: pgadmin@tecnico.pt
-      - PGADMIN_DEFAULT_PASSWORD: pgadmin
+      PGADMIN_DEFAULT_EMAIL: pgadmin@tecnico.pt
+      PGADMIN_DEFAULT_PASSWORD: pgadmin
     ports:
       - "5050:80"
     networks:
@@ -52,14 +52,14 @@ services:
 
   app:
     build:
-      context: ./docker/app/
+      context: ./app
       dockerfile: Dockerfile
     depends_on:
       - postgres
     environment:
-      - FLASK_APP: app
-      - FLASK_ENV: development
-      - FLASK_DEBUG: 1
+      FLASK_APP: app
+      FLASK_ENV: development
+      FLASK_DEBUG: 1
     networks:
       - app-network
 

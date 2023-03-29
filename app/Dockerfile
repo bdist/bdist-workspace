@@ -1,4 +1,4 @@
-FROM python:3.10.9-slim-bullseye
+FROM python:3.10.10-slim-bullseye
 
 # Install missing Debian packages
 COPY install-packages.sh .
@@ -10,9 +10,14 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
+COPY /app /app
+
+WORKDIR /app
+
 # Install pip requirements
-COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-ENTRYPOINT ["/usr/local/bin/python"]
-CMD ["-c", "import psycopg; import sqlalchemy; print(psycopg.__name__, psycopg.__version__); print(sqlalchemy.__name__, sqlalchemy.__version__)"]
+RUN sed -i 's/\r$//g' /app/start
+RUN chmod +x /app/start
+
+ENTRYPOINT [ "/app/start" ]

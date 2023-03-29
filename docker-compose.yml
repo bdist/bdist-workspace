@@ -7,45 +7,38 @@ volumes:
 services:
 
   postgres:
-    build:
-      context: ./.docker/postgres/
-      dockerfile: Dockerfile
+    image: postgres:15.2
     restart: always
     volumes:
-      - ./data:/tmp/data
       - pgdata:/var/lib/postgresql/data:Z
-      - .docker/postgres/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
-    env_file:
-      - ./.env/.postgres
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+      - ./data:/tmp/data
     environment:
-      POSTGRES_DB: postgres
+      - POSTGRES_USER: postgres
+      - POSTGRES_PASSWORD: postgres
+      - POSTGRES_DB: postgres
     ports:
       - "5432:5432"
     networks:
       - app-network
 
   pgadmin:
-    build:
-      context: ./.docker/pgadmin/
-      dockerfile: Dockerfile
+    image: dpage/pgadmin4:6.21
     restart: always
     depends_on:
       - postgres
     volumes:
       - pgadmindata:/var/lib/pgadmin
-    env_file:
-      - ./.env/.pgadmin
     environment:
-      PGADMIN_LISTEN_PORT: 5050
+      - PGADMIN_DEFAULT_EMAIL: pgadmin@tecnico.pt
+      - PGADMIN_DEFAULT_PASSWORD: pgadmin
     ports:
-      - "5050:5050"
+      - "5050:80"
     networks:
       - app-network
 
   notebook:
-    build:
-      context: ./.docker/notebook/
-      dockerfile: Dockerfile
+    image: ghcr.io/bdist/notebook
     restart: always
     volumes:
       - ./data:/home/jovyan/data
@@ -57,12 +50,16 @@ services:
     networks:
       - app-network
 
-  python:
+  app:
     build:
-      context: ./.docker/python/
+      context: ./docker/app/
       dockerfile: Dockerfile
     depends_on:
       - postgres
+    environment:
+      - FLASK_APP: app
+      - FLASK_ENV: development
+      - FLASK_DEBUG: 1
     networks:
       - app-network
 

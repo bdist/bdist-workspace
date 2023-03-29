@@ -1,4 +1,4 @@
-# 2022-aid-mac-m1
+# bdist/workspace
 
 To run this:
 

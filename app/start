@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+
+
+if [ "$FLASK_ENV" == "development" ]; then
+        flask run --host=0.0.0.0 --port=5001
+else
+        gunicorn -c gunicorn.py wsgi:app --chdir=/app
+fi

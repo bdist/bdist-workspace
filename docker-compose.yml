@@ -60,6 +60,8 @@ services:
       FLASK_APP: app
       FLASK_ENV: development
       FLASK_DEBUG: 1
+    ports:
+      - "5001:5001"
     networks:
       - app-network
 

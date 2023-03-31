@@ -38,7 +38,7 @@ services:
       - app-network
 
   notebook:
-    image: ghcr.io/bdist/db-notebook
+    image: bdist/db-notebook
     restart: always
     volumes:
       - ./data:/home/jovyan/data

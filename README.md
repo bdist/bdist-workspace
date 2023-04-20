@@ -11,7 +11,7 @@ This guide will help setup the environment needed to complete the lab classes an
 This workspace also launches a Jupyter Notebook Data Science Python Stack
 - [bdist/db-notebook](https://github.com/bdist/db-notebook)
 
-_Note:_ The lab guides were updated to reflect this setup. If you have any trouble with this workspace report the problem to your teacher or open an issue.
+_Note:_ The lab guides were updated to reflect this setup. If you have any trouble with this workspace, please report it by openning an issue on GitHub.
 
 ## Install Docker Desktop
 

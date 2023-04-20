@@ -23,7 +23,7 @@ services:
       - app-network
 
   pgadmin:
-    image: dpage/pgadmin4:snapshot
+    image: dpage/pgadmin4:7.0
     restart: always
     depends_on:
       - postgres

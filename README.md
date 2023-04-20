@@ -25,10 +25,14 @@ Install Docker Desktop on
 
 ## Using this workspace
 
+Download a release or Clone using Git (Recommended!):
+
+`git clone https://github.com/bdist/db-workspace.git`
+
 Run the following command on a Terminal window to launch all services:
 
+`cd db-workspace`
 `docker compose up -d --build`
-
 
 
 ## FAQ and Troubleshooting

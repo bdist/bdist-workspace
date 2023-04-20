@@ -31,7 +31,8 @@ Download a release or Clone using Git (Recommended!):
 
 Run the following command on a Terminal window to launch all services:
 
-`cd db-workspace`
+`cd db-workspace/`
+
 `docker compose up -d --build`
 
 

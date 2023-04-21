@@ -1,8 +1,10 @@
 FROM python:3.10.11-slim-bullseye
 
 # Install missing Debian packages
-COPY install-packages.sh .
-RUN ./install-packages.sh
+RUN apt-get update --yes && \
+    apt-get install --yes --no-install-recommends \
+    less && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1

@@ -33,11 +33,11 @@ Run the following command on a Terminal window to launch all services:
 
 `cd db-workspace/`
 
-`docker compose up -d --build`
+`docker compose up --build`
 
 
 ## FAQ and Troubleshooting
 
 To start from scratch:
 
-`docker compose up -d --build --force-recreate --remove-orphans`
+`docker compose up --build --force-recreate --remove-orphans`

@@ -1,4 +1,12 @@
+# Copyright (c) Flavio Martins <flavio.f.martins@tecnico.ulisboa.pt>
+# Distributed under the terms of the Modified BSD License.
 FROM python:3.10.11-slim-bullseye
+
+LABEL maintainer="Flavio Martins <flavio.f.martins@tecnico.ulisboa.pt>"
+
+# Fix: https://github.com/hadolint/hadolint/wiki/DL4006
+# Fix: https://github.com/koalaman/shellcheck/wiki/SC3014
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install missing Debian packages
 RUN apt-get update --yes && \

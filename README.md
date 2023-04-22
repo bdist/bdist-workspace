@@ -31,10 +31,13 @@ Download a release or Clone using Git (Recommended!):
 
 Run the following command on a Terminal window to launch all services:
 
-`cd db-workspace/`
+1. `cd db-workspace/`
 
-`docker compose up --build`
+2. `docker compose up --build`
 
+3. Open the link printed by the notebook service towards the  at the bottom of the terminal.
+
+**Note:** The terminal window will print logs from all the services launched by the workspace.
 
 ## FAQ and Troubleshooting
 

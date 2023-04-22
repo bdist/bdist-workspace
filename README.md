@@ -35,7 +35,7 @@ Run the following command on a Terminal window to launch all services:
 
 2. `docker compose up --build`
 
-3. Open the link printed by the notebook service towards the  at the bottom of the terminal.
+3. Open the link printed by the notebook service towards the bottom of the terminal.
 
 **Note:** The terminal window will print logs from all the services launched by the workspace.
 

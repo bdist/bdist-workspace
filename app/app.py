@@ -8,7 +8,7 @@ log = app.logger
 
 @app.route("/", methods=["GET"])
 def index():
-    return "Hi World!"
+    return "Hello World!"
 
 
 @app.route("/ping", methods=["GET"])

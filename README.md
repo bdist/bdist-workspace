@@ -60,6 +60,26 @@ db-workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668eb
 db-workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
 ```
 
+5. Click the big blue button on the left and open a Terminal
+
+6. Connect to the databade using the administrator user `postgres` and password `postgres`:
+
+`psql -h postgres -U postgres`
+
+`postgres` ENTER
+
+7. Create a new database
+
+```sql
+CREATE USER db WITH PASSWORD 'db';
+-- DROP DATABASE IF EXISTS db;
+CREATE DATABASE db
+	WITH
+	OWNER = db
+	ENCODING = 'UTF8';
+GRANT ALL ON DATABASE db TO db;
+```
+
 ## Open pgAdmin
 
 pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.

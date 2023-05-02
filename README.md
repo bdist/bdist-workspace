@@ -23,7 +23,7 @@ Install Docker Desktop on
 [Linux](https://docs.docker.com/desktop/install/linux-install/)
 
 
-## Using this workspace
+## Launching the Databases Workspace
 
 Download a release or Clone using Git (Recommended!):
 
@@ -31,16 +31,50 @@ Download a release or Clone using Git (Recommended!):
 
 Run the following command on a Terminal window to launch all services:
 
-1. `cd db-workspace/`
+1. Move into the workspace folder `cd db-workspace/`
 
-2. `docker compose up --build`
+2. Sync your folder with the latest version available on GitHub `git pull`
 
-3. Open the link printed by the notebook service towards the bottom of the terminal.
+2. (Build) and Launch all services `docker compose up --build`
 
-**Note:** The terminal window will print logs from all the services launched by the workspace.
+**Note:** The terminal window prints the logs from all the services launched in this workspace.
+
+
+## Using the Jupyter Notebook [https://docs.jupyter.org/en/latest/]((Docs))
+
+1. The Jupyter Notebook service runs on the non-stardard `8888` port
+
+Open the link printed by the service `notebook` towards the bottom of the terminal.
+
+db-workspace-notebook-1  |     To access the server, open this file in a browser:
+db-workspace-notebook-1  |         file:///home/jovyan/.local/share/jupyter/runtime/jpserver-7-open.html
+db-workspace-notebook-1  |     Or copy and paste one of these URLs:
+db-workspace-notebook-1  |         http://7fd8c38e99bd:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
+db-workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
+
+
+## Open the Flask App
+
+1. A Flask Web App service runs on the non-standard `5001` port
+
+2. To check the app is running click [http://127.0.0.1:5001/ping](Ping)
+
+3. Do you get the following API-like HTTP JSON Response? If yes, it's all good!
+
+```json
+{
+  "message": "pong!",
+  "status": "success"
+}
+```
+
+4. Try the Web App index [http://127.0.0.1:5001/]. Do you get a response?
+
+5. The code for the app lives in `app/app.py`
+
 
 ## FAQ and Troubleshooting
 
-To start from scratch:
+To start from scratch and rebuild:
 
 `docker compose up --build --force-recreate --remove-orphans`

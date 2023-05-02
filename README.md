@@ -80,7 +80,6 @@ db-workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668eb
 
 ```sql
 CREATE USER db WITH PASSWORD 'db';
--- DROP DATABASE IF EXISTS db;
 CREATE DATABASE db
 	WITH
 	OWNER = db

@@ -80,6 +80,8 @@ CREATE DATABASE db
 GRANT ALL ON DATABASE db TO db;
 ```
 
+8. Now you are ready to run the Lab Notebooks!
+
 ## Open pgAdmin
 
 pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.

@@ -31,11 +31,17 @@ Download a release or Clone using Git (Recommended!):
 
 Run the following command on a Terminal window to launch all services:
 
-1. Move into the workspace folder `cd db-workspace/`
+1. Move into the workspace folder
 
-2. Sync your folder with the latest version available on GitHub `git pull`
+`cd db-workspace/`
 
-2. (Build) and Launch all services `docker compose up --build`
+2. Sync your folder with the latest version available on GitHub
+
+`git pull`
+
+2. (Build) and Launch all services
+
+`docker compose up --build`
 
 **Note:** The terminal window prints the logs from all the services launched in this workspace.
 
@@ -66,9 +72,11 @@ db-workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668eb
 
 `psql -h postgres -U postgres`
 
+7. Enter the password:
+
 `postgres` ENTER
 
-7. Create a new database
+8. Create a new database
 
 ```sql
 CREATE USER db WITH PASSWORD 'db';
@@ -80,7 +88,7 @@ CREATE DATABASE db
 GRANT ALL ON DATABASE db TO db;
 ```
 
-8. Now you are ready to run the Lab Notebooks!
+8. Now you are ready to run the [Lab01 Notebook](http://127.0.0.1:8888/lab/tree/work/Lab01/Lab01.ipynb)!
 
 ## Open pgAdmin
 
@@ -97,7 +105,9 @@ Password: pgadmin
 
 3. Add a new connection to the `postgres` service running on this workspace.
 
-4. Use the same username and password you would provide `psql`.
+4. The Hostname is `postgres` (Docker runs a mini-dns server that resolves the hostnames)
+
+5. Use the same username and password you would provide `psql`.
 
 
 ## Open the Flask Web App

@@ -88,7 +88,7 @@ CREATE DATABASE db
 GRANT ALL ON DATABASE db TO db;
 ```
 
-8. You are now ready to run the [Lab01 Notebook](http://127.0.0.1:8888/lab/tree/work/Lab01/Lab01.ipynb)!
+9. You are now ready to run the [Lab01 Notebook](http://127.0.0.1:8888/lab/tree/work/Lab01/Lab01.ipynb)!
 
 ## Open pgAdmin
 

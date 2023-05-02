@@ -68,11 +68,11 @@ db-workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668eb
 
 5. Click the big blue button on the left and open a Terminal
 
-6. Connect to the databade using the administrator user `postgres` and password `postgres`:
+6. Connect to the databasee using the administrator user `postgres` and password `postgres`:
 
 `psql -h postgres -U postgres`
 
-7. Enter the password:
+7. Enter the password and press ENTER:
 
 `postgres` ENTER
 
@@ -88,7 +88,7 @@ CREATE DATABASE db
 GRANT ALL ON DATABASE db TO db;
 ```
 
-8. Now you are ready to run the [Lab01 Notebook](http://127.0.0.1:8888/lab/tree/work/Lab01/Lab01.ipynb)!
+8. You are now ready to run the [Lab01 Notebook](http://127.0.0.1:8888/lab/tree/work/Lab01/Lab01.ipynb)!
 
 ## Open pgAdmin
 
@@ -103,9 +103,11 @@ Username: pgadmin@tecnico.pt
 Password: pgadmin
 ```
 
-3. Add a new connection to the `postgres` service running on this workspace.
+3. Click the button `Add New Server`
 
-4. The Hostname is `postgres` (Docker runs a mini-dns server that resolves the hostnames)
+4. Set the Name and Hostname to `postgres`
+
+Note: Docker runs a mini-dns server that resolves the `postgres` hostname
 
 5. Use the same username and password you would provide `psql`.
 

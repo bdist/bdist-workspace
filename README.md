@@ -68,7 +68,7 @@ db-workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668eb
 
 5. Click the big blue button on the left and open a Terminal
 
-6. Connect to the databasee using the administrator user `postgres` and password `postgres`:
+6. Connect to the database using the administrator user `postgres` and password `postgres`:
 
 `psql -h postgres -U postgres`
 

@@ -40,7 +40,7 @@ Run the following command on a Terminal window to launch all services:
 **Note:** The terminal window prints the logs from all the services launched in this workspace.
 
 
-## Using the Jupyter Notebook [https://docs.jupyter.org/en/latest/]((Docs))
+## Using the Jupyter Notebook [(Docs)](https://docs.jupyter.org/en/latest/)
 
 1. The Jupyter Notebook service runs on the non-stardard `8888` port
 
@@ -86,7 +86,7 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 
 1. The pgAdmin service runs on the non-standard `5050` port
 
-2. [http://127.0.0.1:5050/login](Login Here)
+2. [Login Here](http://127.0.0.1:5050/login)
 
 ```
 Username: pgadmin@tecnico.pt
@@ -102,7 +102,7 @@ Password: pgadmin
 
 1. The Flask Web App service runs on the non-standard `5001` port
 
-2. To check the app is running click [http://127.0.0.1:5001/ping](Ping)
+2. To check the app is running click [Ping](http://127.0.0.1:5001/ping)
 
 3. Do you get the following API-like HTTP JSON Response? If yes, it's all good!
 
@@ -113,7 +113,7 @@ Password: pgadmin
 }
 ```
 
-4. Try the Web App index [http://127.0.0.1:5001/]. Do you get a response?
+4. Try the Web App [Index](http://127.0.0.1:5001/). Do you get a response?
 
 5. The code for the app lives in `app/app.py`
 

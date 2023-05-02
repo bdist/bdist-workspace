@@ -54,6 +54,8 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile
+    volumes:
+      - ./app:/app
     depends_on:
       - postgres
     environment:

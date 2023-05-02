@@ -20,14 +20,12 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
-COPY . /app
+WORKDIR /code
+
+COPY ./requirements.txt /code/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 WORKDIR /app
 
-# Install pip requirements
-RUN pip install --no-cache-dir -r requirements.txt
-
-RUN sed -i 's/\r$//g' /app/start
-RUN chmod +x /app/start
-
-ENTRYPOINT [ "/app/start" ]
+ENTRYPOINT [ "flask", "run", "--host=0.0.0.0", "--port=5001" ]

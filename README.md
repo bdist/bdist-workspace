@@ -44,18 +44,43 @@ Run the following command on a Terminal window to launch all services:
 
 1. The Jupyter Notebook service runs on the non-stardard `8888` port
 
-Open the link printed by the service `notebook` towards the bottom of the terminal.
+2. Token Authentication is enabled so you need to find your own link with the correct authentication token
 
-db-workspace-notebook-1  |     To access the server, open this file in a browser:
-db-workspace-notebook-1  |         file:///home/jovyan/.local/share/jupyter/runtime/jpserver-7-open.html
+3. So look towards the bottom of the Terminal window for logs from `db-workspace-notebook-1` like these
+
+```log
 db-workspace-notebook-1  |     Or copy and paste one of these URLs:
 db-workspace-notebook-1  |         http://7fd8c38e99bd:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
 db-workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
+```
+
+4. Then open the very last link listed
+
+```log
+db-workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
+```
+
+## Open pgAdmin
+
+pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.
+
+1. The pgAdmin service runs on the non-standard `5050` port
+
+2. [http://127.0.0.1:5050/login](Login Here)
+
+```
+Username: pgadmin@tecnico.pt
+Password: pgadmin
+```
+
+3. Add a new connection to the `postgres` service running on this workspace.
+
+4. Use the same username and password you would provide `psql`.
 
 
-## Open the Flask App
+## Open the Flask Web App
 
-1. A Flask Web App service runs on the non-standard `5001` port
+1. The Flask Web App service runs on the non-standard `5001` port
 
 2. To check the app is running click [http://127.0.0.1:5001/ping](Ping)
 

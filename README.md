@@ -201,20 +201,20 @@ Run `docker compose up --build --force-recreate --remove-orphans` to rebuild and
 
 pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.
 
-1. Login [Here](http://127.0.0.1:5050/login)
+1. Login [here](http://127.0.0.1:5050/login).
 
 ```
 Username: pgadmin@tecnico.pt
 Password: pgadmin
 ```
 
-2. Click the button `Add New Server`
+2. Click the button `Add New Server`.
 
-3. Set the Name in the main tab to `postgres`
+3. Set the Name in the main tab to `postgres`.
 
-4. Set the Hostname in the main tab to `postgres`
+4. Set the Hostname in the main tab to `postgres`.
 
-5. Use the same username and password you would provide `psql`
+5. Use the same username and password you would provide `psql`.
 
 ```
 Username: postgres
@@ -224,7 +224,7 @@ Password: postgres
 
 ### Flask Web App
 
-1. Check if the app is running and open [Ping](http://127.0.0.1:5001/ping)
+1. Check if the app is running and open [ping](http://127.0.0.1:5001/ping).
 
 2. Do you get an API-like HTTP JSON-formatted response like this?
 
@@ -243,7 +243,7 @@ Hello world!
 
 4. Try modifying the message in `app/app.py` while it is running.
 
-5. Check in the logs if an automatic reload of the Flask Web App is triggered when you save your changes.
+5. In the logs, check if an automatic reload of the Flask Web App is triggered when you save your changes.
 
 6. Open the [index page](http://127.0.0.1:5001/). Do you get your message now?
 

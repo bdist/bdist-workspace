@@ -1,11 +1,11 @@
 # bdist/db-workspace
 
-This repository provides containerized applications and microservices for the Databases Course @ Tecnico.
+This repository provides containerized applications and microservices for the Databases Course @ Instituto Superior Técnico.
 
-This guide will help setup the environment needed to complete the lab classes and learn databases, including a database server and other services:
-_Note:_ The lab guides were updated to reflect this setup.
+This guide helps setting up a workspace environment for completing lab classes, which includes a database management system and other auxiliary services.
+_Note:_ Lab guides are updated to reflect this workspace environment.
 
-The services provided by this repository are:
+Services provided include:
 
 - [PostgreSQL 15.2](https://www.postgresql.org/docs/release/15.2/) Open Source database management system
 - [pgAdmin4 7.1](https://www.pgadmin.org/docs/pgadmin4/7.1/release_notes_7_1.html) Open Source administration and development platform for PostgreSQL
@@ -112,7 +112,7 @@ $ psql -h postgres -U postgres
 
 `postgres`↵
 
-9. Create a new unpriviledged user `db`.
+9. Create a new unprivileged user `db`.
 
 ```sql
 CREATE USER db WITH PASSWORD 'db';
@@ -129,7 +129,7 @@ CREATE DATABASE db
 
 _Note:_ Set the character encoding to [UTF-8](https://en.wikipedia.org/wiki/UTF-8) explicitly.
 
-11. Grant all priviledges on the database `db` to the user `db`.
+11. Grant all privileges on the database `db` to the user `db`.
 
 ```sql
 GRANT ALL ON DATABASE db TO db;
@@ -152,7 +152,7 @@ _Note:_ Always run the cell that loads the `sql` extension before any cell marke
 (psycopg2.errors.UndefinedTable) relation "depositor" does not exist
 ```
 
-If the exception thrown looks like the one in the example then follow this checklist:
+If the exception thrown looks like the one in the example, then follow this checklist:
 
 1. Is the database you are connected to the correct one?
 
@@ -183,7 +183,7 @@ db=>\d
 (6 rows)
 ```
 
-_Note:_ Alternatively, get the list the relations inside the notebook. Run this on a new notebook cell:
+_Note:_ Alternatively, get the list of relations inside the notebook. Run this on a new notebook cell:
 
 ```
 %sqlcmd tables
@@ -192,8 +192,11 @@ _Note:_ Alternatively, get the list the relations inside the notebook. Run this 
 
 ### Are the containers outdated? Do you want to force a clean rebuild?
 
-Run `docker compose up --build --force-recreate --remove-orphans` to rebuild and cleanup.
+From your project directory, start up the `db-workspace` by running
 
+```bash
+$ docker compose up --build --force-recreate --remove-orphans
+```
 
 ## Included services
 

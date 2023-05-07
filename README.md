@@ -1,21 +1,22 @@
-# bdist/workspace
+# bdist/db-workspace
 
-This repository is provided as an auxiliary guide to run all the software used in the 2023 Databases Course @ Tecnico.
+This repository provides containerized applications and microservices for the Databases Course @ Tecnico.
 
 This guide will help setup the environment needed to complete the lab classes and learn databases, including a database server and other services:
+_Note:_ The lab guides were updated to reflect this setup.
 
-- [PostgreSQL 15.2](https://www.postgresql.org/docs/release/15.2/)
-- [pgAdmin4 7.0](https://www.pgadmin.org/docs/pgadmin4/7.0/release_notes_7_0.html)
+The services provided by this repository are:
+
+- [PostgreSQL 15.2](https://www.postgresql.org/docs/release/15.2/) Open Source database management system
+- [pgAdmin4 7.1](https://www.pgadmin.org/docs/pgadmin4/7.1/release_notes_7_1.html) Open Source administration and development platform for PostgreSQL
+- [bdist/db-notebook](https://github.com/bdist/db-notebook) Jupyter Notebook Data Science Python Stack
 
 
-This workspace also launches a Jupyter Notebook Data Science Python Stack
-- [bdist/db-notebook](https://github.com/bdist/db-notebook)
+## Prerequisites
 
-_Note:_ The lab guides were updated to reflect this setup. If you have any trouble with this workspace, please report it by openning an issue on GitHub.
+### Install Docker Desktop
 
-## Install Docker Desktop
-
-Using docker will allow us to keep all the software in sync in every operating system that you may be using while keeping this software independent of any other software you might have installed on your system.
+Docker Desktop is an application for MacOS, Linux, and Windows machines for the building and sharing of containerized applications and microservices.
 
 Install Docker Desktop on
 [Mac](https://docs.docker.com/desktop/install/mac-install/),
@@ -23,36 +24,63 @@ Install Docker Desktop on
 [Linux](https://docs.docker.com/desktop/install/linux-install/)
 
 
-## Launching the Databases Workspace
+### Install Git
 
-Download a release or Clone using Git (Recommended!):
+Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
-`git clone https://github.com/bdist/db-workspace.git`
-
-Run the following command on a Terminal window to launch all services:
-
-1. Move into the workspace folder
-
-`cd db-workspace/`
-
-2. Sync your folder with the latest version available on GitHub
-
-`git pull`
-
-2. (Build) and Launch all services
-
-`docker compose up --build`
-
-**Note:** The terminal window prints the logs from all the services launched in this workspace.
+Install Git on
+[Mac](https://github.com/git-guides/install-git#install-git-on-mac)
+[Windows](https://github.com/git-guides/install-git#install-git-on-windows) or
+[Linux](https://github.com/git-guides/install-git#install-git-on-linux)
 
 
-## Using the Jupyter Notebook [(Docs)](https://docs.jupyter.org/en/latest/)
+## Your first time launching the Workspace
 
-1. The Jupyter Notebook service runs on the non-stardard `8888` port
+1. Open Terminal.
 
-2. Token Authentication is enabled so you need to find your own link with the correct authentication token
+2. Change the current working directory to the location where you want the cloned directory.
 
-3. So look towards the bottom of the Terminal window for logs from `db-workspace-notebook-1` like these
+3. Type
+
+```bash
+$ git clone https://github.com/bdist/db-workspace.git
+```
+
+4. Press **Enter** to create your local clone.
+
+```bash
+$ git clone https://github.com/bdist/db-workspace.git
+Cloning into 'db-workspace'...
+remote: Enumerating objects: 297, done.
+remote: Counting objects: 100% (80/80), done.
+remote: Compressing objects: 100% (65/65), done.
+remote: Total 297 (delta 41), reused 38 (delta 14), pack-reused 217
+Receiving objects: 100% (297/297), 733.65 KiB | 501.00 KiB/s, done.
+Resolving deltas: 100% (136/136), done.
+```
+
+5. Change the current working directory to the location of the cloned directory.
+
+```bash
+$ cd db-workspace/
+```
+
+6. From your project directory, start up the `db-workspace` by running
+
+```bash
+$ docker compose up --build
+```
+
+_Note:_ The services are attached to this Terminal, so the logs for all the services provided will be printed on its window. Quitting this Terminal window quits all the services abruptly. To shutdown safely you will need to issue CTRL+C in the Terminal window and wait until all the services stop gracefuly. You can close the Terminal window after all services are stopped.
+
+
+### Using the Jupyter Notebook [(Docs)](https://docs.jupyter.org/en/latest/)
+
+The Jupyter Notebook service runs on the non-stardard `8888` port. Token authentication is enabled.
+
+1. You need to find your Authentication Token to login every time the workspace is launched (e.g., after a reboot)
+
+2. Find the section of the logs towards the bottom of the Terminal window that look like this excerpt:
 
 ```log
 db-workspace-notebook-1  |     Or copy and paste one of these URLs:
@@ -60,64 +88,145 @@ db-workspace-notebook-1  |         http://7fd8c38e99bd:8888/lab?token=f83ee98266
 db-workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
 ```
 
-4. Then open the very last link listed
+_Note:_ You can also view the logs for the `db-workspace-notebook-1` in the Containers tab in the Docker Desktop application.
 
-```log
-db-workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
+3. Follow the link printed last with host `127.0.0.1`. The authentication token is embedded in the URL.
+
+4. Click the blue `New Launcher` button on the left labeled with a `+` sign.
+
+5. Open Terminal.
+
+6. Change the current working directory to `~/data/` directory.
+
+```bash
+$ cd ~/data/
 ```
 
-5. Click the big blue button on the left and open a Terminal
+7. Connect to PostgreSQL using the `psql` command-line interface.
 
-6. Connect to the database using the administrator user `postgres` and password `postgres`:
+```bash
+$ psql -h postgres -U postgres
+```
 
-`psql -h postgres -U postgres`
+8. Enter the password for the user `postgres`.
 
-7. Enter the password and press ENTER:
+`postgres`↵
 
-`postgres` ENTER
-
-8. Create a new database
+9. Create a new unpriviledged user `db`.
 
 ```sql
 CREATE USER db WITH PASSWORD 'db';
+```
+
+10. Create database `db` and set user `db` as owner of the database.
+
+```sql
 CREATE DATABASE db
 	WITH
 	OWNER = db
 	ENCODING = 'UTF8';
+```
+
+_Note:_ Set the character encoding to [UTF-8](https://en.wikipedia.org/wiki/UTF-8) explicitly.
+
+11. Grant all priviledges on the database `db` to the user `db`.
+
+```sql
 GRANT ALL ON DATABASE db TO db;
 ```
 
-9. You are now ready to run the [Lab01 Notebook](http://127.0.0.1:8888/lab/tree/work/Lab01/Lab01.ipynb)!
+12. You can continue the tutorial in the [Lab01 Notebook](http://127.0.0.1:8888/lab/tree/work/Lab01/Lab01.ipynb).
 
-## Open pgAdmin
+
+_Note:_ Always run the cell that loads the `sql` extension before any cell marked with the `%%sql` magic command.
+
+
+## FAQ and Troubleshooting
+
+###
+
+
+### A psycopg2.errors.UndefinedTable exception is thrown
+
+```python
+(psycopg2.errors.UndefinedTable) relation "depositor" does not exist
+```
+
+If the exception thrown looks like the one in the example then follow this checklist:
+
+1. Is the database you are connected to the correct one?
+
+```html
+%sql postgresql://db:db@postgres/**db**
+```
+
+2. Is the database empty?
+
+Connect to the target database on the Terminal via `psql` and run the command `\d`.
+
+```bash
+$ psql -h postgres -U db
+Password for user db:
+psql (15.2 (Ubuntu 15.2-1.pgdg22.04+1))
+Type "help" for help.
+
+db=>\d
+         List of relations
+ Schema |   Name    | Type  | Owner
+--------+-----------+-------+-------
+ public | account   | table | db
+ public | borrower  | table | db
+ public | branch    | table | db
+ public | customer  | table | db
+ public | depositor | table | db
+ public | loan      | table | db
+(6 rows)
+```
+
+_Note:_ Alternatively, get the list the relations inside the notebook. Run this on a new notebook cell:
+
+```
+%sqlcmd tables
+```
+
+
+### Are the containers outdated? Do you want to force a clean rebuild?
+
+Run `docker compose up --build --force-recreate --remove-orphans` to rebuild and cleanup.
+
+
+## Included services
+
+### pgAdmin
 
 pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.
 
-1. The pgAdmin service runs on the non-standard `5050` port
-
-2. [Login Here](http://127.0.0.1:5050/login)
+1. Login [Here](http://127.0.0.1:5050/login)
 
 ```
 Username: pgadmin@tecnico.pt
 Password: pgadmin
 ```
 
-3. Click the button `Add New Server`
+2. Click the button `Add New Server`
 
-4. Set the Name and Hostname to `postgres`
+3. Set the Name in the main tab to `postgres`
 
-Note: Docker runs a mini-dns server that resolves the `postgres` hostname
+4. Set the Hostname in the main tab to `postgres`
 
-5. Use the same username and password you would provide `psql`.
+5. Use the same username and password you would provide `psql`
+
+```
+Username: postgres
+Password: postgres
+```
 
 
-## Open the Flask Web App
+### Flask Web App
 
-1. The Flask Web App service runs on the non-standard `5001` port
+1. Check if the app is running and open [Ping](http://127.0.0.1:5001/ping)
 
-2. To check the app is running click [Ping](http://127.0.0.1:5001/ping)
-
-3. Do you get the following API-like HTTP JSON Response? If yes, it's all good!
+2. Do you get an API-like HTTP JSON-formatted response like this?
 
 ```json
 {
@@ -126,13 +235,19 @@ Note: Docker runs a mini-dns server that resolves the `postgres` hostname
 }
 ```
 
-4. Try the Web App [Index](http://127.0.0.1:5001/). Do you get a response?
+3. Open the [index page](http://127.0.0.1:5001/). Do you get a response like this?
 
-5. The code for the app lives in `app/app.py`
+```html
+Hello world!
+```
+
+4. Try modifying the message in `app/app.py` while it is running.
+
+5. Check in the logs if an automatic reload of the Flask Web App is triggered when you save your changes.
+
+6. Open the [index page](http://127.0.0.1:5001/). Do you get your message now?
 
 
-## FAQ and Troubleshooting
+## Issues
 
-To start from scratch and rebuild:
-
-`docker compose up --build --force-recreate --remove-orphans`
+Please use GitHub Issues to report any issues you might have with `db-workspace`.

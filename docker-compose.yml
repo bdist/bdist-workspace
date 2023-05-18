@@ -38,7 +38,7 @@ services:
       - app-network
 
   notebook:
-    image: bdist/db-notebook:6.0
+    image: bdist/db-notebook:7.0
     restart: always
     volumes:
       - ./data:/home/jovyan/data

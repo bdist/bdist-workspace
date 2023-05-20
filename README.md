@@ -143,7 +143,19 @@ _Note:_ Always run the cell that loads the `sql` extension before any cell marke
 
 ## FAQ and Troubleshooting
 
-###
+### My notebook Save Button is disabled or I am getting Permission Errors
+
+You need to set the owner of every directory under `/home/jovyan/` to the user `jovyan` and groups `users`. This is the default username and group for the user in the notebook container.
+
+You only need to run this once.
+
+1. Open Terminal.
+
+2. Run this to reset the permissions for files and folders under `home/jovyan/`.
+
+```bash
+chown -R jovyan:users /home/jovyan/
+```
 
 
 ### A psycopg2.errors.UndefinedTable exception is thrown

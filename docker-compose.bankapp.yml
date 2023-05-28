@@ -1,0 +1,72 @@
+version: '3'
+
+volumes:
+  pgdata: {}
+  pgadmindata: {}
+
+services:
+
+  postgres:
+    image: postgres:15.2
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data:Z
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+      - ./data:/tmp/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  pgadmin:
+    image: dpage/pgadmin4:7.1
+    restart: always
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmindata:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@tecnico.pt
+      PGADMIN_DEFAULT_PASSWORD: pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - app-network
+
+  notebook:
+    image: bdist/db-notebook:7.0
+    restart: always
+    volumes:
+      - ./data:/home/jovyan/data
+      - ./work:/home/jovyan/work
+    depends_on:
+      - postgres
+    ports:
+      - "8888:8888"
+    networks:
+      - app-network
+
+  bankapp:
+    build:
+      context: ../db-bankapp/app
+      dockerfile: Dockerfile
+    volumes:
+      - ../db-bankapp/app:/app
+    depends_on:
+      - postgres
+    environment:
+      FLASK_APP: app
+      FLASK_ENV: development
+      FLASK_DEBUG: 1
+    ports:
+      - "5001:5001"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

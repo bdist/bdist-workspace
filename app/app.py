@@ -60,7 +60,10 @@ def account_index():
             log.debug(f"Found {cur.rowcount} rows.")
 
     # API-like response is returned to clients that request JSON explicitly (e.g., fetch)
-    if request.accept_mimetypes["application/json"]:
+    if (
+        request.accept_mimetypes["application/json"]
+        and not request.accept_mimetypes["text/html"]
+    ):
         return jsonify(accounts)
 
     return render_template("account/index.html", accounts=accounts)

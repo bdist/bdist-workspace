@@ -1,5 +1,5 @@
 default_language_version:
-    python: python3.11
+    python: python3.10
 
 exclude: 'docs|.git|.tox'
 
@@ -25,7 +25,7 @@ repos:
       - id: black
 
   - repo: https://github.com/rtts/djhtml
-    rev: 3.0.5
+    rev: 3.0.6
     hooks:
       - id: djhtml
 

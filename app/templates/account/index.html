@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Accounts{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% for account in accounts %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ account['account_number'] }}</h1>
+          <div class="about">in {{ account['branch_name'] }}</div>
+        </div>
+        <a class="action" href="{{ url_for('account_update', account_number=account['account_number']) }}">Edit</a>
+      </header>
+      <p class="body">€ {{ account['balance'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

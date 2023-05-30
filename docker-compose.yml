@@ -41,6 +41,7 @@ services:
     image: bdist/db-notebook:7.0
     restart: always
     volumes:
+      - ./app:/home/jovyan/app
       - ./data:/home/jovyan/data
       - ./work:/home/jovyan/work
     depends_on:

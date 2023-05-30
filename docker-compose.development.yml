@@ -42,6 +42,7 @@ services:
       context: ../db-notebook/db-notebook
       dockerfile: Dockerfile
     volumes:
+      - ./app:/home/jovyan/app
       - ./data:/home/jovyan/data
       - ./work:/home/jovyan/work
     depends_on:

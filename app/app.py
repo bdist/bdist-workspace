@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import os
 from logging.config import dictConfig
 
 import psycopg
@@ -14,7 +15,7 @@ from psycopg_pool import ConnectionPool
 
 
 # postgres://{user}:{password}@{hostname}:{port}/{database-name}
-DATABASE_URL = "postgres://db:db@postgres/db"
+DATABASE_URL = os.environ.get("DATABASE_URL", "postgres://db:db@postgres/db")
 
 pool = ConnectionPool(conninfo=DATABASE_URL)
 # the pool starts connecting immediately.

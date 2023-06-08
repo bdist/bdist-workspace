@@ -7,7 +7,7 @@ volumes:
 services:
 
   postgres:
-    image: postgres:15.2
+    image: postgres:15.3
     restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data:Z
@@ -23,7 +23,7 @@ services:
       - app-network
 
   pgadmin:
-    image: dpage/pgadmin4:7.1
+    image: dpage/pgadmin4:7.3
     restart: always
     depends_on:
       - postgres
@@ -38,7 +38,7 @@ services:
       - app-network
 
   notebook:
-    image: bdist/db-notebook:7.0
+    image: bdist/db-notebook:8.0
     restart: always
     volumes:
       - ./../db-bankapp/app:/home/jovyan/app

@@ -7,7 +7,7 @@ volumes:
 services:
 
   postgres:
-    image: postgres:15.2
+    image: postgres:15.3
     restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data:Z
@@ -23,7 +23,7 @@ services:
       - app-network
 
   pgadmin:
-    image: dpage/pgadmin4:7.2
+    image: dpage/pgadmin4:7.3
     restart: always
     depends_on:
       - postgres

@@ -28,6 +28,14 @@ $ heroku config:set FLASK_APP=app
 ```
 
 ```bash
+$ heroku config:set FLASK_DEBUG=0
+```
+
+```bash
+$ heroku config:set FLASK_ENV=production
+```
+
+```bash
 $ heroku config:set WEB_CONCURRENCY=3
 ```
 

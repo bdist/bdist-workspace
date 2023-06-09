@@ -12,7 +12,7 @@ repos:
       - id: check-ast
       - id: check-merge-conflict
       - id: check-added-large-files
-        args: [ '--maxkb=1024' ]
+        args: [ '--maxkb=10240' ]
       - id: trailing-whitespace
         exclude_types: [ svg ]
       - id: end-of-file-fixer

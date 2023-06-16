@@ -35,6 +35,18 @@ $ heroku config:set FLASK_DEBUG=0
 $ heroku config:set FLASK_ENV=production
 ```
 
+Generate your app's unique secret key
+
+```bash
+$ python3 -c 'import secrets; print(secrets.token_hex())'
+```
+
+Set the environment variable 
+
+```bash
+$ heroku config:set FLASK_SECRET_KEY=your_key_from_the_previous_step
+```
+
 ```bash
 $ heroku config:set WEB_CONCURRENCY=3
 ```

@@ -44,6 +44,15 @@ app.config.from_prefixed_env()
 log = app.logger
 
 
+def is_decimal(s):
+    """Returns True if string is a parseable float number."""
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
 @app.route("/", methods=("GET",))
 @app.route("/accounts", methods=("GET",))
 def account_index():
@@ -94,8 +103,8 @@ def account_update(account_number):
 
         if not balance:
             error = "Balance is required."
-            if not balance.isnumeric():
-                error = "Balance is required to be numeric."
+        if not is_decimal(balance):
+            error = "Balance is required to be decimal."
 
         if error is not None:
             flash(error)

@@ -8,7 +8,7 @@ _Note:_ Lab guides are updated to reflect this workspace environment.
 Services provided include:
 
 - [PostgreSQL 15.3](https://www.postgresql.org/docs/release/15.2/) Open Source database management system
-- [pgAdmin4 7.2](https://www.pgadmin.org/docs/pgadmin4/7.1/release_notes_7_2.html) Open Source administration and development platform for PostgreSQL
+- [pgAdmin4 7.3](https://www.pgadmin.org/docs/pgadmin4/7.3/release_notes_7_3.html) Open Source administration and development platform for PostgreSQL
 - [bdist/db-notebook](https://github.com/bdist/db-notebook) Jupyter Notebook Data Science Python Stack
 
 

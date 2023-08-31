@@ -12,7 +12,7 @@
           <h1>{{ account['account_number'] }}</h1>
           <div class="about">in {{ account['branch_name'] }}</div>
         </div>
-        <a class="action" href="{{ url_for('account_update', account_number=account['account_number']) }}">Edit</a>
+        <a class="action" href="{{ url_for('account_update_view', account_number=account['account_number']) }}">Edit</a>
       </header>
       <p class="body">€ {{ account['balance'] }}</p>
     </article>

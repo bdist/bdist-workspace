@@ -1,9 +1,9 @@
-drop table if exists borrower cascade;
-drop table if exists loan cascade;
-drop table if exists depositor cascade;
-drop table if exists account cascade;
-drop table if exists customer cascade;
-drop table if exists branch cascade;
+drop table if exists borrower;
+drop table if exists loan;
+drop table if exists depositor;
+drop table if exists account;
+drop table if exists customer;
+drop table if exists branch;
 
 ----------------------------------------
 -- Table Creation

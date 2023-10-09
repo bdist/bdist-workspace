@@ -7,8 +7,8 @@ _Note:_ Lab guides are updated to reflect this workspace environment.
 
 Services provided include:
 
-- [PostgreSQL 15.4](https://www.postgresql.org/docs/release/15.4/) Open Source database management system
-- [pgAdmin4 7.6](https://www.pgadmin.org/docs/pgadmin4/7.6/release_notes_7_6.html) Open Source administration and development platform for PostgreSQL
+- [PostgreSQL 16.0](https://www.postgresql.org/docs/release/16.0/) Open Source database management system
+- [pgAdmin4 7.8](https://www.pgadmin.org/docs/pgadmin4/7.8/release_notes_7_8.html) Open Source administration and development platform for PostgreSQL
 - [bdist/db-notebook](https://github.com/bdist/db-notebook) Jupyter Notebook Data Science Python Stack
 
 
@@ -179,7 +179,7 @@ Connect to the target database on the Terminal via `psql` and run the command `\
 ```bash
 $ psql -h postgres -U db
 Password for user db:
-psql (15.2 (Ubuntu 15.2-1.pgdg22.04+1))
+psql (16.0 (Ubuntu 16.0-1.pgdg22.04+1))
 Type "help" for help.
 
 db=>\d

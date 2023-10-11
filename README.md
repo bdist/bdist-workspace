@@ -158,10 +158,10 @@ chown -R jovyan:users /home/jovyan/
 ```
 
 
-### A psycopg2.errors.UndefinedTable exception is thrown
+### A psycopg.errors.UndefinedTable exception is thrown
 
 ```python
-(psycopg2.errors.UndefinedTable) relation "depositor" does not exist
+(psycopg.errors.UndefinedTable) relation "depositor" does not exist
 ```
 
 If the exception thrown looks like the one in the example, then follow this checklist:

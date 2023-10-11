@@ -266,3 +266,7 @@ Hello world!
 ## Issues
 
 Please use GitHub Issues to report any issues you might have with `db-workspace`.
+
+## Credits
+
+Flavio Martins

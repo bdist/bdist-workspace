@@ -63,10 +63,10 @@ services:
 
   bankapp:
     build:
-      context: ../db-bankapp/app
+      context: ../db-bankapi/app
       dockerfile: Dockerfile
     volumes:
-      - ../db-bankapp/app:/app
+      - ../db-bankapi/app:/app
     depends_on:
       - postgres
     environment:

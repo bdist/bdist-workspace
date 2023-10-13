@@ -24,6 +24,14 @@ services:
     networks:
       - app-network
 
+  redis:
+    image: redis:7.2
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
   pgadmin:
     image: dpage/pgadmin4:snapshot
     restart: always
@@ -40,7 +48,7 @@ services:
       - app-network
 
   notebook:
-    image: bdist/db-notebook:19.0
+    image: bdist/db-notebook:20.0
     restart: always
     volumes:
       - ./../db-bankapp/app:/home/jovyan/app

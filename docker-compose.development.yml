@@ -24,6 +24,14 @@ services:
     networks:
       - app-network
 
+  redis:
+    image: redis:7.2
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
   pgadmin:
     image: dpage/pgadmin4:snapshot
     restart: always

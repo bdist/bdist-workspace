@@ -33,7 +33,7 @@ services:
       - app-network
 
   pgadmin:
-    image: dpage/pgadmin4:snapshot
+    image: dpage/pgadmin4:7.8
     restart: always
     depends_on:
       - postgres
@@ -48,7 +48,7 @@ services:
       - app-network
 
   notebook:
-    image: bdist/db-notebook:20.0
+    image: bdist/db-notebook:21.0
     restart: always
     volumes:
       - ./../db-bankapp/app:/home/jovyan/app

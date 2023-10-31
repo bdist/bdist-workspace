@@ -51,11 +51,9 @@ services:
     image: bdist/notebook:24.0
     restart: always
     volumes:
-      - ./app:/home/jovyan/app
+      - ./../db-bankapi:/home/jovyan/app
       - ./data:/home/jovyan/data
       - ./work:/home/jovyan/work
-      - ../db-labs/labs:/home/jovyan/db-labs
-      - ../is-labs/labs:/home/jovyan/is-labs
     depends_on:
       - postgres
     ports:
@@ -63,13 +61,13 @@ services:
     networks:
       - app-network
 
-  app:
+  bankapi:
     build:
-      context: ./app
+      context: ../db-bankapp
       dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
-      - ./app:/app
+      - ../db-bankapp/app:/app
     depends_on:
       - postgres
     environment:

@@ -9,7 +9,7 @@ Services provided include:
 
 - [PostgreSQL 16.0](https://www.postgresql.org/docs/release/16.0/) Open Source database management system
 - [pgAdmin4 7.8](https://www.pgadmin.org/docs/pgadmin4/7.8/release_notes_7_8.html) Open Source administration and development platform for PostgreSQL
-- [bdist/db-notebook](https://github.com/bdist/db-notebook) Jupyter Notebook Databases Stack
+- [bdist/notebook](https://github.com/bdist/notebook) Jupyter Notebook Databases Stack
 
 
 ## Prerequisites

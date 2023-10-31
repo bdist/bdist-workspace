@@ -3,8 +3,9 @@
 version: '3'
 
 volumes:
-  pgdata: {}
-  pgadmindata: {}
+  pg_data: {}
+  pgadmin_data: {}
+  redis_data: {}
 
 services:
 
@@ -12,7 +13,7 @@ services:
     image: postgres:16.0
     restart: always
     volumes:
-      - pgdata:/var/lib/postgresql/data:Z
+      - pg_data:/var/lib/postgresql/data:Z
       - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
       - ./data:/tmp/data
     environment:
@@ -24,26 +25,29 @@ services:
     networks:
       - app-network
 
-  redis:
-    image: redis:7.2
-    restart: always
-    ports:
-      - "6379:6379"
-    networks:
-      - app-network
-
   pgadmin:
     image: dpage/pgadmin4:7.8
     restart: always
     depends_on:
       - postgres
     volumes:
-      - pgadmindata:/var/lib/pgadmin
+      - pgadmin_data:/var/lib/pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin@tecnico.pt
       PGADMIN_DEFAULT_PASSWORD: pgadmin
     ports:
       - "5050:80"
+    networks:
+      - app-network
+
+  redis:
+    image: redis:7.2
+    restart: always
+    volumes:
+      - redis_data:/data
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
     networks:
       - app-network
 

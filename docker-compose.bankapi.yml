@@ -65,6 +65,7 @@ services:
     build:
       context: ../db-bankapi
       dockerfile: Dockerfile
+    restart: unless-stopped
     volumes:
       - ../db-bankapi/app:/app
     depends_on:

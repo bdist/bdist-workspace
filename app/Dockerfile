@@ -1,6 +1,6 @@
 # Copyright (c) Flavio Martins <flavio.f.martins@tecnico.ulisboa.pt>
 # Distributed under the terms of the Modified BSD License.
-FROM python:3.11.5-slim-bookworm
+FROM python:3.11.6-slim-bookworm
 
 LABEL maintainer="Flavio Martins <flavio.f.martins@tecnico.ulisboa.pt>"
 

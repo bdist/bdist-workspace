@@ -1,4 +1,4 @@
-# Copyright (c) Flavio Martins <flavio.f.martins@tecnico.ulisboa.pt>
+# Copyright (c) BDist Development Team
 # Distributed under the terms of the Modified BSD License.
 FROM python:3.11.6-slim-bookworm
 

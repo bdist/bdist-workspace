@@ -55,8 +55,8 @@ services:
     restart: always
     volumes:
       - ./../db-bankapi:/home/jovyan/app
-      - ./data:/home/jovyan/data
       - ./work:/home/jovyan/work
+      - ./data:/home/jovyan/data
     depends_on:
       - postgres
     ports:

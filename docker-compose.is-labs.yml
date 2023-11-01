@@ -55,8 +55,8 @@ services:
     restart: always
     volumes:
       - ./app:/home/jovyan/app
-      - ./data:/home/jovyan/data
       - ./work:/home/jovyan/work
+      - ../is-labs/labs:/home/jovyan/data
       - ../is-labs/labs:/home/jovyan/labs
     depends_on:
       - postgres

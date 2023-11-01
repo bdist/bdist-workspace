@@ -64,6 +64,12 @@ repos:
     hooks:
       - id: prettier
 
+  - repo: https://github.com/Riverside-Healthcare/djLint
+    rev: v1.34.0
+    hooks:
+      - id: djlint-reformat-jinja
+      - id: djlint-jinja
+
   # `pre-commit sample-config` default hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0

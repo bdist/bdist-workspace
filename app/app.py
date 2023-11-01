@@ -2,9 +2,7 @@
 import os
 from logging.config import dictConfig
 
-from flask import Flask
-from flask import jsonify
-
+from flask import Flask, jsonify
 
 dictConfig(
     {

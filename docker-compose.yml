@@ -1,13 +1,12 @@
 # Copyright (c) BDist Development Team
 # Distributed under the terms of the Modified BSD License.
-version: '3'
+version: "3"
 
 volumes:
   pgdata: {}
   pgadmindata: {}
 
 services:
-
   postgres:
     image: postgres:16.0
     restart: always

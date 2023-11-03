@@ -3,15 +3,16 @@
 version: "3"
 
 volumes:
-  pgdata: {}
-  pgadmindata: {}
+  pg_data: {}
+  pgadmin_data: {}
+  redis_data: {}
 
 services:
   postgres:
     image: postgres:16.0
     restart: always
     volumes:
-      - pgdata:/var/lib/postgresql/data:Z
+      - pg_data:/var/lib/postgresql/data:Z
       - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
       - ./data:/tmp/data
     environment:
@@ -29,7 +30,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - pgadmindata:/var/lib/pgadmin
+      - pgadmin_data:/var/lib/pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin@tecnico.pt
       PGADMIN_DEFAULT_PASSWORD: pgadmin

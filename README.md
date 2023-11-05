@@ -1,9 +1,8 @@
-# bdist/db-workspace
+# bdist/workspace
 
-This repository provides containerized applications and microservices for the Databases Course @ Instituto Superior Técnico.
+This repository provides containerized applications and microservices for the Informations Systems and Databases Course @ Instituto Superior Técnico.
 
 This guide helps setting up a workspace environment for completing lab classes, which includes a database management system and other auxiliary services.
-_Note:_ Lab guides are updated to reflect this workspace environment.
 
 Services provided include:
 
@@ -40,14 +39,14 @@ Install Git on
 3. Type
 
    ```bash
-   git clone https://github.com/bdist/db-workspace.git
+   git clone https://github.com/bdist/workspace.git
    ```
 
 4. Press **Enter** to create your local clone.
 
    ```bash
-   $ git clone https://github.com/bdist/db-workspace.git
-   Cloning into 'db-workspace'...
+   $ git clone https://github.com/bdist/workspace.git
+   Cloning into 'workspace'...
    remote: Enumerating objects: 297, done.
    remote: Counting objects: 100% (80/80), done.
    remote: Compressing objects: 100% (65/65), done.
@@ -59,10 +58,10 @@ Install Git on
 5. Change the current working directory to the location of the cloned directory.
 
    ```bash
-   cd db-workspace/
+   cd workspace/
    ```
 
-6. From your project directory, start up the `db-workspace` by running
+6. From the cloned directory, start up `bdist/workspace` by running
 
    ```bash
    docker compose up --build
@@ -77,133 +76,19 @@ Install Git on
 
 The Jupyter Notebook service runs on the non-stardard `8888` port. Token authentication is enabled.
 
-1. You need to find your Authentication Token to login every time the workspace is launched (e.g., after a reboot)
+1. You need to find your Authentication Token to login every time the `bdist/workspace` is launched (e.g., after a reboot)
 
 2. Find the section of the logs towards the bottom of the Terminal window that look like this excerpt:
 
    ```log
-   db-workspace-notebook-1  |     Or copy and paste one of these URLs:
-   db-workspace-notebook-1  |         http://7fd8c38e99bd:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
-   db-workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
+   workspace-notebook-1  |     Or copy and paste one of these URLs:
+   workspace-notebook-1  |         http://7fd8c38e99bd:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
+   workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
    ```
 
-   _Note:_ You can also view the logs for the `db-workspace-notebook-1` in the Containers tab in the Docker Desktop application.
+   _Note:_ You can also view the logs for the `workspace-notebook-1` in the Containers tab in the Docker Desktop application.
 
 3. Follow the link printed last with host `127.0.0.1`. The authentication token is embedded in the URL.
-
-4. Click the blue `New Launcher` button on the left labeled with a `+` sign.
-
-5. Open Terminal.
-
-6. Change the current working directory to `~/data/` directory.
-
-   ```bash
-   cd ~/data/
-   ```
-
-7. Connect to PostgreSQL using the `psql` command-line interface.
-
-   ```bash
-   psql -h postgres -U postgres
-   ```
-
-8. Enter the password for the user `postgres`.
-
-   `postgres`↵
-
-9. Create a new unprivileged user `db`.
-
-   ```sql
-   CREATE USER db WITH PASSWORD 'db';
-   ```
-
-10. Create database `db` and set user `db` as owner of the database.
-
-    ```sql
-    CREATE DATABASE db
-    WITH
-    OWNER = db
-    ENCODING = 'UTF8';
-    ```
-
-    _Note:_ Set the character encoding to [UTF-8](https://en.wikipedia.org/wiki/UTF-8) explicitly.
-
-11. Grant all privileges on the database `db` to the user `db`.
-
-    ```sql
-    GRANT ALL ON DATABASE db TO db;
-    ```
-
-12. You can continue the tutorial in the [Lab01 Notebook](http://127.0.0.1:8888/lab/tree/work/Lab01/Lab01.ipynb).
-
-    _Note:_ Always run the cell that loads the `sql` extension before any cell marked with the `%%sql` magic command.
-
-## FAQ and Troubleshooting
-
-### My notebook Save Button is disabled or I am getting Permission Errors
-
-You need to set the owner of every directory under `/home/jovyan/` to the user `jovyan` and groups `users`. This is the default username and group for the user in the notebook container.
-
-You only need to run this once.
-
-1. Open Terminal.
-
-2. Run this to reset the permissions for files and folders under `home/jovyan/`.
-
-   ```bash
-   chown -R jovyan:users /home/jovyan/
-   ```
-
-### A psycopg.errors.UndefinedTable exception is thrown
-
-```python
-(psycopg.errors.UndefinedTable) relation "depositor" does not exist
-```
-
-If the exception thrown looks like the one in the example, then follow this checklist:
-
-1. Is the database you are connected to the correct one?
-
-   ```html
-   %sql postgresql://db:db@postgres/**db**
-   ```
-
-2. Is the database empty?
-
-   Connect to the target database on the Terminal via `psql` and run the command `\d`.
-
-   ```bash
-   $ psql -h postgres -U db
-   Password for user db:
-   psql (16.0 (Ubuntu 16.0-1.pgdg22.04+1))
-   Type "help" for help.
-
-   db=>\d
-           List of relations
-   Schema |   Name    | Type  | Owner
-   --------+-----------+-------+-------
-   public | account   | table | db
-   public | borrower  | table | db
-   public | branch    | table | db
-   public | customer  | table | db
-   public | depositor | table | db
-   public | loan      | table | db
-   (6 rows)
-   ```
-
-   _Note:_ Alternatively, get the list of relations inside the notebook. Run this on a new notebook cell:
-
-   ```python
-   %sqlcmd tables
-   ```
-
-### Are the containers outdated? Do you want to force a clean rebuild?
-
-From your project directory, start up the `db-workspace` by running
-
-```bash
-docker compose up --build --force-recreate --remove-orphans
-```
 
 ## Included services
 
@@ -247,9 +132,84 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 
 5. Open the [index page](http://127.0.0.1:5001/). Do you get your message now?
 
+## FAQ and Troubleshooting
+
+### Are the containers outdated? Do you want to force a clean rebuild?
+
+1. Firstly, from the project directory run
+
+   ```bash
+   git pull
+   ```
+
+   This updates `bdist/workspace` to the latest version.
+
+2. From your project directory, start up the `bdist/workspace` by running
+
+   ```bash
+   docker compose up --build --force-recreate --remove-orphans
+   ```
+
+### My notebook Save Button is disabled or I am getting Permission Errors
+
+You need to set the owner of every directory under `/home/jovyan/` to the user `jovyan` and groups `users`. This is the default username and group for the user in the notebook container.
+
+You only need to run this once.
+
+1. Open Terminal.
+
+2. Run this to reset the permissions for files and folders under `home/jovyan/`.
+
+   ```bash
+   chown -R jovyan:users /home/jovyan/
+   ```
+
+### A psycopg.errors.UndefinedTable exception is thrown
+
+```python
+(psycopg.errors.UndefinedTable) relation "depositor" does not exist
+```
+
+If the exception thrown looks like the one in the example, then follow this checklist:
+
+1. Is the database you are connected to the correct one?
+
+   ```html
+   %sql postgresql://bank:bank@postgres/**bank**
+   ```
+
+2. Is the database empty?
+
+   Connect to the target database on the Terminal via `psql` and run the command `\d`.
+
+   ```bash
+   $ psql -h postgres -U bank
+   Password for user bank:
+   psql (16.0 (Ubuntu 16.0-1.pgdg22.04+1))
+   Type "help" for help.
+
+   postgres bank@bank=>\d
+           List of relations
+   Schema |   Name    | Type  | Owner
+   --------+-----------+-------+-------
+   public | account   | table | bank
+   public | borrower  | table | bank
+   public | branch    | table | bank
+   public | customer  | table | bank
+   public | depositor | table | bank
+   public | loan      | table | bank
+   (6 rows)
+   ```
+
+   _Note:_ Alternatively, get the list of relations inside the notebook. Run this on a new notebook cell:
+
+   ```python
+   %sqlcmd tables
+   ```
+
 ## Issues
 
-Please use GitHub Issues to report any issues you might have with `db-workspace`.
+Please use GitHub Issues to report any issues you might have with `bdist/workspace`.
 
 ## Credits
 

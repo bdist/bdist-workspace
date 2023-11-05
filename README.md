@@ -130,8 +130,6 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 
 4. In the logs, check if an automatic reload of the Flask Web App is triggered when you save your changes.
 
-5. Open the [index page](http://127.0.0.1:5001/). Do you get your message now?
-
 ## FAQ and Troubleshooting
 
 ### Are the containers outdated? Do you want to force a clean rebuild?

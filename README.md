@@ -116,7 +116,7 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 
 ### Flask Web App
 
-1. Check if the app is running and open [ping](http://127.0.0.1:5001/ping).
+1. Check if the app is running and open [ping](http://127.0.0.1:8080/ping).
 
 2. Do you get an API-like HTTP JSON-formatted response like this?
 

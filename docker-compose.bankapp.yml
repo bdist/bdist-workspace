@@ -79,7 +79,7 @@ services:
       FLASK_DEBUG: 1
       FLASK_SECRET_KEY: 66342083928cc29310851e51d931ea35ebb4b5747bd2a33e0d06c3d6047c83c8
     ports:
-      - "5001:5001"
+      - "8080:8080"
     networks:
       - app-network
 

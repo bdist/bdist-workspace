@@ -28,4 +28,4 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 WORKDIR /app
 
-ENTRYPOINT [ "flask", "run", "--host=0.0.0.0", "--port=5001" ]
+ENTRYPOINT [ "flask", "run", "--host=0.0.0.0", "--port=8080" ]

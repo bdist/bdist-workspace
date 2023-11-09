@@ -76,6 +76,7 @@ services:
     depends_on:
       - postgres
     environment:
+      DATABASE_URL: postgres://app:app@postgres/app
       FLASK_APP: app
       FLASK_ENV: development
       FLASK_DEBUG: 1

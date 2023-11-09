@@ -20,7 +20,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN chmod +x /app/entrypoint /app/start
+RUN chmod a+x /app/entrypoint /app/start
 
 ENTRYPOINT [ "/app/entrypoint" ]
 

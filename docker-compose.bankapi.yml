@@ -51,7 +51,7 @@ services:
       - app-network
 
   notebook:
-    image: bdist/notebook:2023-11-06
+    image: ghcr.io/bdist/notebook:2023-11-10
     restart: always
     volumes:
       - ./../db-bankapi:/home/jovyan/app

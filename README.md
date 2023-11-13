@@ -1,13 +1,13 @@
 # bdist/workspace
 
-This repository provides containerized applications and microservices for the Informations Systems and Databases Course @ Instituto Superior Técnico.
+This repository provides containerized applications and microservices for the Information Systems and Databases Course @ Instituto Superior Técnico.
 
 This guide helps setting up a workspace environment for completing lab classes, which includes a database management system and other auxiliary services.
 
 Services provided include:
 
-- [PostgreSQL 16.0](https://www.postgresql.org/docs/release/16.0/) Open Source database management system
-- [pgAdmin4 7.8](https://www.pgadmin.org/docs/pgadmin4/7.8/release_notes_7_8.html) Open Source administration and development platform for PostgreSQL
+- [PostgreSQL](https://www.postgresql.org) Open Source database management system
+- [pgAdmin4](https://www.pgadmin.org) Open Source administration and development platform for PostgreSQL
 - [bdist/notebook](https://github.com/bdist/notebook) Jupyter Notebook Databases Stack
 
 ## Prerequisites

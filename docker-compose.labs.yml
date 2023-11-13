@@ -13,7 +13,6 @@ services:
     restart: always
     volumes:
       - pg_data:/var/lib/postgresql/data:Z
-      - ./compose/postgres/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
     environment:
       POSTGRES_USER: postgres

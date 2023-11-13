@@ -22,6 +22,4 @@ COPY . /app
 
 RUN chmod +x /app/entrypoint /app/start
 
-ENTRYPOINT [ "/app/entrypoint" ]
-
-CMD [ "/app/start" ]
+ENTRYPOINT [ "flask", "run", "--host=0.0.0.0", "--port=8080" ]

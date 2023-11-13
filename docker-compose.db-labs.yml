@@ -67,15 +67,15 @@ services:
 
   app:
     build:
-      context: ./app
+      context: ../db-bankapi
       dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
-      - ./app:/app
+      - ../db-bankapi/app:/app
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgres://app:app@postgres/app
+      DATABASE_URL: postgres://bank:bank@postgres/bank
       FLASK_APP: app
       FLASK_ENV: development
       FLASK_DEBUG: 1

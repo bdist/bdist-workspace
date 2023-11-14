@@ -36,13 +36,13 @@ Install Git on
 
 2. Change the current working directory to the location where you want the cloned directory.
 
-3. Type
+3. Run the following command to create your local clone
 
    ```bash
    git clone https://github.com/bdist/workspace.git
    ```
 
-4. Press **Enter** to create your local clone.
+   Press **Enter**
 
    ```bash
    Cloning into 'workspace'...
@@ -54,13 +54,13 @@ Install Git on
    Resolving deltas: 100% (136/136), done.
    ```
 
-5. Change the current working directory to the location of the cloned directory.
+4. Change the current working directory to the location of the cloned directory.
 
    ```bash
    cd workspace/
    ```
 
-6. From the cloned directory, start up `bdist/workspace` by running
+5. From the cloned directory, start up `bdist/workspace` by running
 
    ```bash
    docker compose up --build

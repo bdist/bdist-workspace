@@ -186,6 +186,22 @@ You only need to run this once.
    chown -R jovyan:users /home/jovyan/
    ```
 
+If this still does not solve the issue with permissions then follow this recipe:
+
+1. Open Terminal.
+
+2. Run this do access the notebook container as administrator (root):
+
+   ```bash
+   docker compose exec -e GRANT_SUDO=yes --user root notebook /bin/bash
+   ```
+
+3. Run this to reset the permissions for files and folders under `home/jovyan/`.
+
+   ```bash
+   chown -R jovyan:users /home/jovyan/
+   ```
+
 ### A psycopg.errors.UndefinedTable exception is thrown
 
 ```python

@@ -57,6 +57,7 @@ services:
   notebook:
     image: ghcr.io/bdist/notebook:2023-11-10
     restart: always
+    user: "jovyan:users"
     volumes:
       - ./app:/home/jovyan/app
       - ./data:/home/jovyan/data

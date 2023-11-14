@@ -1,4 +1,4 @@
 **/*.db
+**/*.ipynb
 **/*.sql
-**/Untitled.ipynb
 **/.ipynb_checkpoints/

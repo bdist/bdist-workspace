@@ -132,7 +132,21 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 
 ## FAQ and Troubleshooting
 
-### Are the containers outdated? Do you want to force a clean rebuild?
+### I get an initdb: error: directory "/var/lib/postgresql/data" exists but is not empty
+
+You need to delete the data volume used by postgres and recreate it.
+
+1. Open a new Terminal.
+
+2. Run this to shutdown the containers and remove all associated volumes.
+
+   ```bash
+   docker compose down -v
+   ```
+
+3. Run the steps in the following section to update `bdist/workspace`.
+
+### How do I update my workspace?
 
 1. Firstly, from the project directory run
 
@@ -158,7 +172,7 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 
    This starts up the `bdist/workspace` and cleans up unused images.
 
-### My notebook Save Button is disabled or I am getting Permission Errors
+### I get Permission Errors and/or the notebook Save Button is disabled
 
 You need to set the owner of every directory under `/home/jovyan/` to the user `jovyan` and groups `users`. This is the default username and group for the user in the notebook container.
 

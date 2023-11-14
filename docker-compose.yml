@@ -61,6 +61,7 @@ services:
     volumes:
       - ./app:/home/jovyan/app
       - ./data:/home/jovyan/data
+      - ./images:/home/jovyan/images
       - ./work:/home/jovyan/work
     depends_on:
       - postgres

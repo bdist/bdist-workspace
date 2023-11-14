@@ -61,6 +61,7 @@ services:
     volumes:
       - ./app:/home/jovyan/app
       - ./work:/home/jovyan/work
+      - ./images:/home/jovyan/images
       - ../is-labs/data:/home/jovyan/data
       - ../is-labs/labs:/home/jovyan/labs
     depends_on:

@@ -60,7 +60,8 @@ services:
     user: "jovyan:users"
     volumes:
       - ./app:/home/jovyan/app
-      - ./work:/home/jovyan/work
+      - ./data:/home/jovyan/images
+      - ./images:/home/jovyan/work
       - ../db-labs/data:/home/jovyan/data
       - ../db-labs/labs:/home/jovyan/labs
     depends_on:

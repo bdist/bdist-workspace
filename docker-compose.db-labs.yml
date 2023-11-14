@@ -75,7 +75,7 @@ services:
       dockerfile: Dockerfile.development
     restart: unless-stopped
     volumes:
-      - ../bankapi/app:/app
+      - ../bankapi:/app
     depends_on:
       - postgres
     environment:

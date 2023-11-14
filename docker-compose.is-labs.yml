@@ -71,11 +71,11 @@ services:
 
   app:
     build:
-      context: ../db-bankapp
-      dockerfile: Dockerfile
+      context: ../bankapp
+      dockerfile: Dockerfile.development
     restart: unless-stopped
     volumes:
-      - ../db-bankapp/app:/app
+      - ../bankapp/app:/app
     depends_on:
       - postgres
     environment:

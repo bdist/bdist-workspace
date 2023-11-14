@@ -71,11 +71,11 @@ services:
 
   app:
     build:
-      context: ../db-bankapi
-      dockerfile: Dockerfile
+      context: ../bankapi
+      dockerfile: Dockerfile.development
     restart: unless-stopped
     volumes:
-      - ../db-bankapi/app:/app
+      - ../bankapi/app:/app
     depends_on:
       - postgres
     environment:

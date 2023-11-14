@@ -142,11 +142,21 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 
    This updates `bdist/workspace` to the latest version.
 
-2. From your project directory, start up the `bdist/workspace` by running
+2. Secondly, from the project directory run
+
+   ```bash
+   docker compose pull
+   ```
+
+   This updates container images to the latest version.
+
+3. Lastly, from the project directory run
 
    ```bash
    docker compose up --build --force-recreate --remove-orphans
    ```
+
+   This starts up the `bdist/workspace` and cleans up unused images.
 
 ### My notebook Save Button is disabled or I am getting Permission Errors
 

@@ -45,7 +45,6 @@ Install Git on
 4. Press **Enter** to create your local clone.
 
    ```bash
-   $ git clone https://github.com/bdist/workspace.git
    Cloning into 'workspace'...
    remote: Enumerating objects: 297, done.
    remote: Counting objects: 100% (80/80), done.

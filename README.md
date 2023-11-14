@@ -104,9 +104,9 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 
 2. Click the button `Add New Server`.
 
-3. Set the Name in the main tab to `postgres`.
+3. Set the Name in the General tab to `postgres`.
 
-4. Set the Hostname in the main tab to `postgres`.
+4. Set the Hostname in the Connection tab to `postgres`.
 
 5. Use the same username and password you would provide `psql`.
 

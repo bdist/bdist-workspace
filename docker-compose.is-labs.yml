@@ -55,7 +55,7 @@ services:
       - app-network
 
   notebook:
-    image: ghcr.io/bdist/notebook:2023-11-10
+    image: ghcr.io/bdist/notebook:2023-11-17
     restart: always
     user: "jovyan:users"
     volumes:

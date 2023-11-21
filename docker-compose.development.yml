@@ -26,7 +26,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - app-network
+      - workspace-network
 
   pgadmin:
     image: dpage/pgadmin4:7.8
@@ -41,7 +41,7 @@ services:
     ports:
       - "5050:80"
     networks:
-      - app-network
+      - workspace-network
 
   redis:
     image: redis:7.2
@@ -52,7 +52,7 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - app-network
+      - workspace-network
 
   notebook:
     build:
@@ -70,7 +70,7 @@ services:
     ports:
       - "8888:8888"
     networks:
-      - app-network
+      - workspace-network
 
   app:
     build:
@@ -90,8 +90,8 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - app-network
+      - workspace-network
 
 networks:
-  app-network:
+  workspace-network:
     driver: bridge

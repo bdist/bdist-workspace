@@ -64,6 +64,7 @@ services:
       - ./work:/home/jovyan/work
       - ../db-labs/data:/home/jovyan/data
       - ../db-labs/labs:/home/jovyan/labs
+      - ../db-labs/project:/home/jovyan/project
     depends_on:
       - postgres
     ports:

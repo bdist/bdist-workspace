@@ -39,7 +39,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: pgadmin@tecnico.pt
       PGADMIN_DEFAULT_PASSWORD: pgadmin
     ports:
-      - "5050:80"
+      - "10000:80"
     networks:
       - workspace-network
 
@@ -67,8 +67,10 @@ services:
       - ../is-labs/project:/home/jovyan/project
     depends_on:
       - postgres
+    environment:
+      - JUPYTER_PORT=9999
     ports:
-      - "8888:8888"
+      - "9999:9999"
     networks:
       - workspace-network
 

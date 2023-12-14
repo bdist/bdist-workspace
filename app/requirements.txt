@@ -1,7 +1,0 @@
-cython>=0.29.24
-Flask==2.3.*
-gunicorn==21.2.0
-packaging==23
-psycopg[binary]==3.1.*
-Werkzeug[watchdog]>=3.0.1
-wheel

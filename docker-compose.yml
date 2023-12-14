@@ -72,26 +72,6 @@ services:
     networks:
       - workspace-network
 
-  app:
-    build:
-      context: ./app
-      dockerfile: Dockerfile.development
-    restart: unless-stopped
-    volumes:
-      - ./app:/app
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://app:app@postgres/app
-      FLASK_APP: app
-      FLASK_ENV: development
-      FLASK_DEBUG: 1
-      FLASK_SECRET_KEY: 66342083928cc29310851e51d931ea35ebb4b5747bd2a33e0d06c3d6047c83c8
-    ports:
-      - "8080:8080"
-    networks:
-      - workspace-network
-
 networks:
   workspace-network:
     driver: bridge

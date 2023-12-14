@@ -3,3 +3,4 @@
 **/*.png
 **/*.sql
 **/.ipynb_checkpoints/
+app/

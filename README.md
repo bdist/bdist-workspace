@@ -81,8 +81,8 @@ The Jupyter Notebook service runs on the non-stardard `8888` port. Token authent
 
    ```log
    workspace-notebook-1  |     Or copy and paste one of these URLs:
-   workspace-notebook-1  |         http://7fd8c38e99bd:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
-   workspace-notebook-1  |         http://127.0.0.1:8888/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
+   workspace-notebook-1  |         http://7fd8c38e99bd:9999/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
+   workspace-notebook-1  |         http://127.0.0.1:9999/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
    ```
 
    _Note:_ You can also view the logs for the `workspace-notebook-1` in the Containers tab in the Docker Desktop application.
@@ -95,7 +95,7 @@ The Jupyter Notebook service runs on the non-stardard `8888` port. Token authent
 
 pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.
 
-1. Login [here](http://127.0.0.1:5050/login).
+1. Login [here](http://127.0.0.1:10000/login).
 
    ```html
    Username: pgadmin@tecnico.pt Password: pgadmin

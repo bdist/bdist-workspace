@@ -18,6 +18,8 @@ services:
       - "postgres"
       - "-c"
       - "shared_buffers=256MB"
+      - "-c"
+      - "shared_preload_libraries=pg_stat_statements"
     shm_size: "256m"
     environment:
       POSTGRES_USER: postgres

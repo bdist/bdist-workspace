@@ -63,7 +63,7 @@ Install Git on
 5. From the cloned directory, start up `bdist/workspace` by running
 
    ```bash
-   docker compose up --build
+   docker compose up
    ```
 
    _Note:_ The services are attached to this Terminal, so the logs for all the services provided will be printed on its window.
@@ -73,7 +73,7 @@ Install Git on
 
 ### Using the Jupyter Notebook [(Docs)](https://docs.jupyter.org/en/latest/)
 
-The Jupyter Notebook service runs on the non-stardard `8888` port. Token authentication is enabled.
+The Jupyter Notebook service runs on the non-stardard `9999` port. Token authentication is enabled.
 
 1. You need to find your Authentication Token to login every time the `bdist/workspace` is launched (e.g., after a reboot)
 
@@ -115,9 +115,24 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 
 ### Flask Web App
 
-1. Check if the app is running and open [ping](http://127.0.0.1:8080/ping).
+1. Make sure the `app/` directory is right next to the `workspace/` directory. If needed, move the `app/` directory out of `workspace/`.
 
-2. Do you get an API-like HTTP JSON-formatted response like this?
+   ```bash
+   $ ls
+   app/  workspace/
+   ```
+
+2. The `docker-compose..app.yml` file contains the instructions to launch the app. Relaunch the workspace with the following command to use it:
+
+   ```bash
+   docker compose -f docker-compose..app.yml up
+   ```
+
+   _Note:_ Please run the instructions in the `How do I update my workspace?` section if this file is does not exist.
+
+3. Check if the app is running and open [ping](http://127.0.0.1:8080/ping).
+
+4. Do you get an API-like HTTP JSON-formatted response like this?
 
    ```json
    {
@@ -125,9 +140,9 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
    }
    ```
 
-3. Try modifying the message in `app/app.py` while it is running.
+5. Try modifying the message in `../app/app.py` while it is running.
 
-4. In the logs, check if an automatic reload of the Flask Web App is triggered when you save your changes.
+6. In the logs, check if an automatic reload of the Flask Web App is triggered when you save your changes.
 
 ## FAQ and Troubleshooting
 

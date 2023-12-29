@@ -69,8 +69,10 @@ services:
       - ./work:/home/jovyan/work
     depends_on:
       - postgres
+    environment:
+      - JUPYTER_PORT=9999
     ports:
-      - "8888:8888"
+      - "9999:9999"
     networks:
       - workspace-network
 

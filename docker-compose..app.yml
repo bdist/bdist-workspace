@@ -57,7 +57,7 @@ services:
       - workspace-network
 
   notebook:
-    image: ghcr.io/bdist/notebook:2023-12-15
+    image: ghcr.io/bdist/notebook:2024-01-08
     restart: always
     user: "jovyan:users"
     volumes:

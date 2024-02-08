@@ -8,6 +8,26 @@ volumes:
   redis_data: {}
 
 services:
+  notebook:
+    image: ghcr.io/bdist/notebook:2024-02-08
+    restart: always
+    user: "jovyan:users"
+    volumes:
+      - ./app:/home/jovyan/app
+      - ./images:/home/jovyan/images
+      - ./work:/home/jovyan/work
+      - ../db-labs/data:/home/jovyan/data
+      - ../db-labs/labs:/home/jovyan/labs
+      - ../db-labs/project:/home/jovyan/project
+    depends_on:
+      - postgres
+    environment:
+      - JUPYTER_PORT=9999
+    ports:
+      - "9999:9999"
+    networks:
+      - workspace-network
+
   postgres:
     image: postgres:16
     restart: always
@@ -53,26 +73,6 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
     ports:
       - "6379:6379"
-    networks:
-      - workspace-network
-
-  notebook:
-    image: ghcr.io/bdist/notebook:2024-02-05
-    restart: always
-    user: "jovyan:users"
-    volumes:
-      - ./app:/home/jovyan/app
-      - ./images:/home/jovyan/images
-      - ./work:/home/jovyan/work
-      - ../db-labs/data:/home/jovyan/data
-      - ../db-labs/labs:/home/jovyan/labs
-      - ../db-labs/project:/home/jovyan/project
-    depends_on:
-      - postgres
-    environment:
-      - JUPYTER_PORT=9999
-    ports:
-      - "9999:9999"
     networks:
       - workspace-network
 

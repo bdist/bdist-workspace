@@ -8,6 +8,26 @@ volumes:
   redis_data: {}
 
 services:
+  notebook:
+    build:
+      context: ../notebook/notebook
+      dockerfile: Dockerfile
+    restart: always
+    user: "jovyan:users"
+    volumes:
+      - ./app:/home/jovyan/app
+      - ./data:/home/jovyan/data
+      - ./images:/home/jovyan/images
+      - ./work:/home/jovyan/work
+    depends_on:
+      - postgres
+    environment:
+      - JUPYTER_PORT=9999
+    ports:
+      - "9999:9999"
+    networks:
+      - workspace-network
+
   postgres:
     image: postgres:16
     restart: always
@@ -53,26 +73,6 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
     ports:
       - "6379:6379"
-    networks:
-      - workspace-network
-
-  notebook:
-    build:
-      context: ../notebook/notebook
-      dockerfile: Dockerfile
-    restart: always
-    user: "jovyan:users"
-    volumes:
-      - ./app:/home/jovyan/app
-      - ./data:/home/jovyan/data
-      - ./images:/home/jovyan/images
-      - ./work:/home/jovyan/work
-    depends_on:
-      - postgres
-    environment:
-      - JUPYTER_PORT=9999
-    ports:
-      - "9999:9999"
     networks:
       - workspace-network
 

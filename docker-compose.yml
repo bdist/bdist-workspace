@@ -24,7 +24,7 @@ services:
     ports:
       - "9999:9999"
     networks:
-      - workspace-network
+      - bdist-workspace-network
 
   postgres:
     image: postgres:16
@@ -46,7 +46,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - workspace-network
+      - bdist-workspace-network
 
   pgadmin:
     image: dpage/pgadmin4:8
@@ -61,7 +61,7 @@ services:
     ports:
       - "10000:80"
     networks:
-      - workspace-network
+      - bdist-workspace-network
 
   redis:
     image: redis:7
@@ -72,8 +72,8 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - workspace-network
+      - bdist-workspace-network
 
 networks:
-  workspace-network:
+  bdist-workspace-network:
     driver: bridge

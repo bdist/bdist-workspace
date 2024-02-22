@@ -1,4 +1,4 @@
-# bdist/workspace
+# bdist-workspace
 
 This repository provides containerized applications and microservices for the Information Systems and Databases Course @ Instituto Superior Técnico.
 
@@ -39,13 +39,13 @@ Install Git on
 3. Run the following command to create your local clone
 
    ```bash
-   git clone https://github.com/bdist/workspace.git
+   git clone https://github.com/bdist/bdist-workspace.git
    ```
 
    Press **Enter**
 
    ```bash
-   Cloning into 'workspace'...
+   Cloning into 'bdist-workspace'...
    remote: Enumerating objects: 297, done.
    remote: Counting objects: 100% (80/80), done.
    remote: Compressing objects: 100% (65/65), done.
@@ -57,10 +57,10 @@ Install Git on
 4. Change the current working directory to the location of the cloned directory.
 
    ```bash
-   cd workspace/
+   cd bdist-workspace/
    ```
 
-5. From the cloned directory, start up `bdist/workspace` by running
+5. From the cloned directory, start up `bdist-workspace` by running
 
    ```bash
    docker compose up
@@ -75,17 +75,17 @@ Install Git on
 
 The Jupyter Notebook service runs on the non-stardard `9999` port. Token authentication is enabled.
 
-1. You need to find your Authentication Token to login every time the `bdist/workspace` is launched (e.g., after a reboot)
+1. You need to find your Authentication Token to login every time the `bdist-workspace` is launched (e.g., after a reboot)
 
 2. Find the section of the logs towards the bottom of the Terminal window that look like this excerpt:
 
    ```log
-   workspace-notebook-1  |     Or copy and paste one of these URLs:
-   workspace-notebook-1  |         http://7fd8c38e99bd:9999/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
-   workspace-notebook-1  |         http://127.0.0.1:9999/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
+   bdist-workspace-notebook-1  |     Or copy and paste one of these URLs:
+   bdist-workspace-notebook-1  |         http://7fd8c38e99bd:9999/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
+   bdist-workspace-notebook-1  |         http://127.0.0.1:9999/lab?token=f83ee982668ebe66bee2dbeb5875d14131a1d118d1e0fa12
    ```
 
-   _Note:_ You can also view the logs for the `workspace-notebook-1` in the Containers tab in the Docker Desktop application.
+   _Note:_ You can also view the logs for the `bdist-workspace-notebook-1` in the Containers tab in the Docker Desktop application.
 
 3. Follow the link printed last with host `127.0.0.1`. The authentication token is embedded in the URL.
 
@@ -115,11 +115,11 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 
 ### Flask Web App
 
-1. Make sure the `app/` directory is right next to the `workspace/` directory. If needed, move the `app/` directory out of `workspace/`.
+1. Make sure the `app/` directory is right next to the `bdist-workspace/` directory. If needed, move the `app/` directory out of `bdist-workspace/`.
 
    ```bash
    $ ls
-   app/  workspace/
+   app/  bdist-workspace/
    ```
 
 2. The `docker-compose..app.yml` file contains the instructions to launch the app. Relaunch the workspace with the following command to use it:
@@ -158,7 +158,7 @@ You need to delete the data volume used by postgres and recreate it.
    docker compose down -v
    ```
 
-3. Run the steps in the following section to update `bdist/workspace`.
+3. Run the steps in the following section to update `bdist-workspace`.
 
 ### How do I update my workspace?
 
@@ -168,7 +168,7 @@ You need to delete the data volume used by postgres and recreate it.
    git pull
    ```
 
-   This updates `bdist/workspace` to the latest version.
+   This updates `bdist-workspace` to the latest version.
 
 2. Secondly, from the project directory run
 
@@ -184,7 +184,7 @@ You need to delete the data volume used by postgres and recreate it.
    docker compose up --build --force-recreate --remove-orphans
    ```
 
-   This starts up the `bdist/workspace` and cleans up unused images.
+   This starts up the `bdist-workspace` and cleans up unused images.
 
 ### I get Permission Errors and/or the notebook Save Button is disabled
 
@@ -261,7 +261,7 @@ If the exception thrown looks like the one in the example, then follow this chec
 
 ## Issues
 
-Please use GitHub Issues to report any issues you might have with `bdist/workspace`.
+Please use GitHub Issues to report any issues you might have with `bdist-workspace`.
 
 ## Credits
 

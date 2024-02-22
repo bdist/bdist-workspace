@@ -13,7 +13,6 @@ services:
     restart: always
     user: "jovyan:users"
     volumes:
-      - ./app:/home/jovyan/app
       - ./data:/home/jovyan/data
       - ./images:/home/jovyan/images
       - ./work:/home/jovyan/work

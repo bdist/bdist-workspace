@@ -9,28 +9,37 @@ volumes:
 
 services:
   notebook:
-    image: ghcr.io/bdist/notebook:2024-02-13
     restart: always
+    image: ghcr.io/bdist/notebook:2024-02-13
     user: "jovyan:users"
     volumes:
       - ./data:/home/jovyan/data
       - ./images:/home/jovyan/images
       - ./work:/home/jovyan/work
-    depends_on:
-      - postgres
     environment:
       - JUPYTER_PORT=9999
     ports:
-      - "9999:9999"
+      - 9999:9999
+    networks:
+      - bdist-workspace-network
+
+  redis:
+    restart: always
+    image: redis:7
+    command:
+      - redis-server
+      - --appendonly
+      - "yes"
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
     networks:
       - bdist-workspace-network
 
   postgres:
-    image: postgres:16
     restart: always
-    volumes:
-      - pg_data:/var/lib/postgresql/data:Z
-      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+    image: postgres:16
     command:
       - "postgres"
       - "-c"
@@ -38,38 +47,30 @@ services:
       - "-c"
       - "shared_preload_libraries=pg_stat_statements"
     shm_size: "256m"
+    volumes:
+      - pg_data:/var/lib/postgresql/data:Z
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     ports:
-      - "5432:5432"
+      - 5432:5432
     networks:
       - bdist-workspace-network
 
   pgadmin:
-    image: dpage/pgadmin4:8
-    restart: always
+    restart: unless-stopped
     depends_on:
       - postgres
+    image: dpage/pgadmin4:8
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin@tecnico.pt
       PGADMIN_DEFAULT_PASSWORD: pgadmin
     ports:
-      - "10000:80"
-    networks:
-      - bdist-workspace-network
-
-  redis:
-    image: redis:7
-    restart: always
-    volumes:
-      - redis_data:/data
-    command: ["redis-server", "--appendonly", "yes"]
-    ports:
-      - "6379:6379"
+      - 10000:80
     networks:
       - bdist-workspace-network
 

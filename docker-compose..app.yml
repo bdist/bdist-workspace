@@ -17,8 +17,6 @@ services:
       - ./data:/home/jovyan/data
       - ./images:/home/jovyan/images
       - ./work:/home/jovyan/work
-    depends_on:
-      - postgres
     environment:
       - JUPYTER_PORT=9999
     ports:
@@ -26,12 +24,23 @@ services:
     networks:
       - bdist-workspace-network
 
-  postgres:
-    image: postgres:16
+  redis:
     restart: always
+    image: redis:7
+    command:
+      - redis-server
+      - --appendonly
+      - "yes"
+    ports:
+      - 6379:6379
     volumes:
-      - pg_data:/var/lib/postgresql/data:Z
-      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+      - redis_data:/data
+    networks:
+      - bdist-workspace-network
+
+  postgres:
+    restart: always
+    image: postgres:16
     command:
       - "postgres"
       - "-c"
@@ -39,57 +48,49 @@ services:
       - "-c"
       - "shared_preload_libraries=pg_stat_statements"
     shm_size: "256m"
+    volumes:
+      - pg_data:/var/lib/postgresql/data:Z
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     ports:
-      - "5432:5432"
+      - 5432:5432
     networks:
       - bdist-workspace-network
 
   pgadmin:
-    image: dpage/pgadmin4:8
-    restart: always
+    restart: unless-stopped
     depends_on:
       - postgres
+    image: dpage/pgadmin4:8
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin@tecnico.pt
       PGADMIN_DEFAULT_PASSWORD: pgadmin
     ports:
-      - "10000:80"
-    networks:
-      - bdist-workspace-network
-
-  redis:
-    image: redis:7
-    restart: always
-    volumes:
-      - redis_data:/data
-    command: ["redis-server", "--appendonly", "yes"]
-    ports:
-      - "6379:6379"
+      - 10000:80
     networks:
       - bdist-workspace-network
 
   app:
+    restart: unless-stopped
+    depends_on:
+      - postgres
     build:
       context: ../app
       dockerfile: Dockerfile.development
-    restart: unless-stopped
     volumes:
       - ../app:/app
-    depends_on:
-      - postgres
     environment:
       FLASK_APP: app
       FLASK_ENV: development
       FLASK_DEBUG: 1
       FLASK_SECRET_KEY: 66342083928cc29310851e51d931ea35ebb4b5747bd2a33e0d06c3d6047c83c8
     ports:
-      - "8080:8080"
+      - 8080:8080
     networks:
       - bdist-workspace-network
 

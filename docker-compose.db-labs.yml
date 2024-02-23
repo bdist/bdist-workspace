@@ -9,8 +9,8 @@ volumes:
 
 services:
   notebook:
-    image: ghcr.io/bdist/notebook:2024-02-21
     restart: always
+    image: ghcr.io/bdist/notebook:2024-02-21
     user: "jovyan:users"
     volumes:
       - ./app:/home/jovyan/app
@@ -22,7 +22,7 @@ services:
     environment:
       - JUPYTER_PORT=9999
     ports:
-      - "9999:9999"
+      - 9999:9999
     networks:
       - bdist-workspace-network
 

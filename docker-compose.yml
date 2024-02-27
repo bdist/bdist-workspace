@@ -9,7 +9,7 @@ volumes:
 
 services:
   notebook:
-    restart: always
+    restart: unless-stopped
     image: ghcr.io/bdist/notebook:2024-02-26
     user: "jovyan:users"
     volumes:
@@ -24,7 +24,7 @@ services:
       - bdist-workspace-network
 
   redis:
-    restart: always
+    restart: unless-stopped
     image: redis:7
     command:
       - redis-server
@@ -38,7 +38,7 @@ services:
       - bdist-workspace-network
 
   postgres:
-    restart: always
+    restart: unless-stopped
     image: postgres:16
     command:
       - "postgres"

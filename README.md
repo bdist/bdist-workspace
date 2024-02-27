@@ -95,7 +95,7 @@ The Jupyter Notebook service runs on the non-stardard `9999` port. Token authent
 
 pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.
 
-1. Login [here](http://127.0.0.1:10000/login).
+1. Login [here](http://127.0.0.1:5050/login).
 
    ```html
    Username: pgadmin@tecnico.pt Password: pgadmin

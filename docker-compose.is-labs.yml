@@ -72,8 +72,9 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin@tecnico.pt
       PGADMIN_DEFAULT_PASSWORD: pgadmin
+      PGADMIN_LISTEN_PORT: 5050
     ports:
-      - 10000:80
+      - 5050:5050
     networks:
       - bdist-workspace-network
 

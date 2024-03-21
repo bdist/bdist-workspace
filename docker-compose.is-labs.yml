@@ -28,7 +28,7 @@ services:
 
   redis:
     restart: unless-stopped
-    image: redis:7
+    image: redis:7.2
     command:
       - redis-server
       - --appendonly

@@ -7,3 +7,4 @@
 **/*.sql
 **/.ipynb_checkpoints/
 app/
+node_modules/

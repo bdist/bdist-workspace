@@ -42,18 +42,6 @@ Install Git on
    git clone https://github.com/bdist/bdist-workspace.git
    ```
 
-   Press **Enter**
-
-   ```bash
-   Cloning into 'bdist-workspace'...
-   remote: Enumerating objects: 297, done.
-   remote: Counting objects: 100% (80/80), done.
-   remote: Compressing objects: 100% (65/65), done.
-   remote: Total 297 (delta 41), reused 38 (delta 14), pack-reused 217
-   Receiving objects: 100% (297/297), 733.65 KiB | 501.00 KiB/s, done.
-   Resolving deltas: 100% (136/136), done.
-   ```
-
 4. Change the current working directory to the location of the cloned directory.
 
    ```bash
@@ -67,13 +55,11 @@ Install Git on
    ```
 
    _Note:_ The services are attached to this Terminal, so the logs for all the services provided will be printed on its window.
-   Quitting this Terminal window quits all the services abruptly.
    To shutdown safely you will need to issue CTRL+C in the Terminal window and wait until all the services stop gracefuly.
-   You can close the Terminal window after all services are stopped.
 
 ### Using the Jupyter Notebook [(Docs)](https://docs.jupyter.org/en/latest/)
 
-The Jupyter Notebook service runs on the non-stardard `9999` port. Token authentication is enabled.
+The Jupyter Notebook service runs on the port `9999`. Token authentication is enabled.
 
 1. You need to find your Authentication Token to login every time the `bdist-workspace` is launched (e.g., after a reboot)
 

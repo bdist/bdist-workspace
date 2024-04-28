@@ -48,7 +48,7 @@ services:
     command:
       - "postgres"
       - "-c"
-      - "shared_buffers=256MB"
+      - "shared_buffers=1GB"
       - "-c"
       - "work_mem=8MB"
       - "-c"

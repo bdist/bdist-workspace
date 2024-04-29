@@ -52,6 +52,8 @@ services:
       - "-c"
       - "wal_compression=on"
       - "-c"
+      - "max_wal_size=2GB"
+      - "-c"
       - "checkpoint_timeout=15min"
       - "-c"
       - "shared_preload_libraries=pg_stat_statements"

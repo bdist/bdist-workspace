@@ -1,1 +1,17 @@
+###############################################################################
+# Set default behavior to automatically normalize line endings.
+###############################################################################
 * text=auto
+
+*.html    text diff=html
+*.css     text
+*.js      text
+*.xml     text
+*.txt     text
+*.sql     text
+*.md      text
+*.py      text
+*.yaml    text
+*.yml     text
+*.sh      eol=lf
+*.conf    eol=lf

@@ -9,7 +9,7 @@ volumes:
 services:
   notebook:
     restart: unless-stopped
-    image: ghcr.io/bdist/notebook:2024-09-16
+    image: ghcr.io/bdist/notebook:2024-09-19
     user: "jovyan:users"
     volumes:
       - ./app:/home/jovyan/app
@@ -99,10 +99,10 @@ services:
     depends_on:
       - postgres
     build:
-      context: ../bankapi
+      context: ../bank-api-app
       dockerfile: Dockerfile.development
     volumes:
-      - ../bankapi:/app
+      - ../bank-api-app:/app
     environment:
       DATABASE_URL: postgres://bank:bank@postgres/bank
       FLASK_APP: app

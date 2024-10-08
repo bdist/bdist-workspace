@@ -2,7 +2,7 @@
 # Distributed under the terms of the Modified BSD License.
 volumes:
   pg_data: {}
-  pg_run: {} # This volume is used to share the PostgreSQL socket
+  pg-run: {} # This volume is used to share the PostgreSQL socket between the PostgreSQL and the Jupyter containers
   pgadmin_data: {}
   redis_data: {}
 
@@ -15,7 +15,7 @@ services:
       - ./images:/home/jovyan/images
       - ./work:/home/jovyan/work
       - type: "volume"
-        source: pg_run
+        source: pg-run
         target: /var/run/postgresql/
     environment:
       - JUPYTER_PORT=9999
@@ -60,7 +60,7 @@ services:
       - pg_data:/var/lib/postgresql/data:Z
       - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
       - type: "volume"
-        source: pg_run
+        source: pg-run
         target: /var/run/postgresql/
     environment:
       POSTGRES_USER: postgres
@@ -78,9 +78,6 @@ services:
     image: dpage/pgadmin4:8
     volumes:
       - pgadmin_data:/var/lib/pgadmin
-      - type: "volume"
-        source: pg_run
-        target: /var/run/postgresql/
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin@tecnico.pt
       PGADMIN_DEFAULT_PASSWORD: pgadmin

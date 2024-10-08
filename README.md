@@ -223,7 +223,7 @@ If the exception thrown looks like the one in the example, then follow this chec
    ```bash
    $ psql -h postgres -U bank
    Password for user bank:
-   psql (16.1 (Debian 16.1-1.pgdg120+1))
+   psql (17.0 (Ubuntu 17.0-1.pgdg24.04+1))
    Type "help" for help.
 
    postgres bank@bank=>\d

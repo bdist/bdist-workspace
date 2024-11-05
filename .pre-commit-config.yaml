@@ -14,7 +14,7 @@
 repos:
   # Autoupdate: Python code
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.2
+    rev: v3.17.0
     hooks:
       - id: pyupgrade
         args: [--py39-plus]
@@ -28,34 +28,37 @@ repos:
 
   # Autoformat: Python code
   - repo: https://github.com/psf/black
-    rev: 24.3.0
+    rev: 24.8.0
     hooks:
       - id: black
         args: [--target-version=py39]
 
   # Check python code static typing
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.9.0
+    rev: v1.11.2
     hooks:
       - id: mypy
         args: [--config, ./mypy.ini]
         additional_dependencies:
           [
+            "beautifulsoup4",
             "numpy",
             "pytest",
             "requests",
             "urllib3",
+            "types-beautifulsoup4",
+            "types-PyYAML",
             "types-requests",
             "types-tabulate",
             "types-urllib3",
           ]
-        # Unfortunately, `pre-commit` only runs on changed files
+        # Unfortunately, `pre-commit` only runs on modified files
         # This doesn't work well with `mypy --follow-imports error`
         # See: https://github.com/pre-commit/mirrors-mypy/issues/34#issuecomment-1062160321
         #
         # To work around this we run `mypy` only in manual mode
-        # So it won't run as part of `git commit` command
-        # But it will still be run as part of `pre-commit` workflow and give expected results
+        # So it won't run as part of `git commit` command,
+        # but it will still be run as part of `pre-commit` workflow and give expected results
         stages: [manual]
 
   # Autoformat: YAML, JSON, Markdown, etc.
@@ -64,15 +67,9 @@ repos:
     hooks:
       - id: prettier
 
-  - repo: https://github.com/Riverside-Healthcare/djLint
-    rev: v1.34.1
-    hooks:
-      - id: djlint-reformat-jinja
-      - id: djlint-jinja
-
   # `pre-commit sample-config` default hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       - id: check-added-large-files
       - id: end-of-file-fixer
@@ -81,7 +78,7 @@ repos:
 
   # Lint: Dockerfile
   - repo: https://github.com/hadolint/hadolint
-    rev: v2.12.1-beta
+    rev: v2.13.0-beta
     hooks:
       - id: hadolint-docker
         entry: hadolint/hadolint:v2.12.1-beta hadolint
@@ -89,7 +86,7 @@ repos:
   # Lint: Dockerfile
   # We're linting .dockerfile files as well
   - repo: https://github.com/hadolint/hadolint
-    rev: v2.12.1-beta
+    rev: v2.13.0-beta
     hooks:
       - id: hadolint-docker
         name: Lint *.dockerfile Dockerfiles
@@ -121,13 +118,13 @@ repos:
 
   # Lint: Python
   - repo: https://github.com/PyCQA/flake8
-    rev: 7.0.0
+    rev: 7.1.1
     hooks:
       - id: flake8
 
   # Lint: Markdown
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.39.0
+    rev: v0.41.0
     hooks:
       - id: markdownlint
         args: ["--fix"]
@@ -141,7 +138,7 @@ repos:
   # nbQA provides tools from the Python ecosystem like
   # pyupgrade, isort, black, and flake8, adjusted for notebooks.
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.8.5
+    rev: 1.8.7
     hooks:
       - id: nbqa-pyupgrade
         args: [--py39-plus]
@@ -152,11 +149,11 @@ repos:
 
   # Run black on python code blocks in documentation files.
   - repo: https://github.com/adamchainz/blacken-docs
-    rev: 1.16.0
+    rev: 1.18.0
     hooks:
       - id: blacken-docs
         # --skip-errors is added to allow us to have python syntax highlighting even if
-        # the python code blocks includes jupyter specific additions such as % or !
+        # the python code blocks include jupyter-specific additions such as % or !
         # See https://github.com/adamchainz/blacken-docs/issues/127 for an upstream
         # feature request about this.
         args: [--target-version=py39, --skip-errors]

@@ -1,0 +1,16 @@
+version: 3
+
+agent:
+  authtoken: Add your Authtoken to your ngrok.yml configuration file.
+  log: stdout
+
+endpoints:
+  - name: notebook
+    upstream:
+      url: http://notebook:9999
+  - name: pgadmin
+    upstream:
+      url: http://pgadmin:5050
+  - name: app
+    upstream:
+      url: http://app:8080

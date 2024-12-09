@@ -8,7 +8,7 @@ volumes:
 services:
   notebook:
     restart: unless-stopped
-    image: ghcr.io/bdist/notebook:2024-12-03
+    image: ghcr.io/bdist/notebook:2024-12-09
     volumes:
       - ./app:/home/jovyan/app
       - ./images:/home/jovyan/images

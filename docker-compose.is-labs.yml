@@ -10,7 +10,6 @@ services:
     restart: unless-stopped
     image: ghcr.io/bdist/notebook:2024-12-23
     volumes:
-      - ./images:/home/jovyan/images
       - ./work:/home/jovyan/work
       - ../is-labs/data:/home/jovyan/data
       - ../is-labs/labs:/home/jovyan/labs

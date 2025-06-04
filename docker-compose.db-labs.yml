@@ -13,7 +13,7 @@ services:
       - ./work:/home/jovyan/work
       - ../db-labs/data:/home/jovyan/data
       - ../db-labs/labs:/home/jovyan/labs
-      - ../db-labs/project:/home/jovyan/project
+      - ../db-projects/project:/home/jovyan/project
     environment:
       - JUPYTER_PORT=9999
     ports:

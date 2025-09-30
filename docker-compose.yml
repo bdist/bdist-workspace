@@ -8,7 +8,7 @@ volumes:
 services:
   notebook:
     restart: unless-stopped
-    image: ghcr.io/bdist/notebook:2025-08-15
+    image: ghcr.io/bdist/notebook:2025-09-30
     volumes:
       - ./data:/home/jovyan/data
       - ./images:/home/jovyan/images
@@ -36,7 +36,7 @@ services:
 
   postgres:
     restart: unless-stopped
-    image: postgres:17
+    image: postgres:18
     command:
       - "postgres"
       - "-c"

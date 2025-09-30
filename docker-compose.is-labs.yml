@@ -37,7 +37,7 @@ services:
 
   postgres:
     restart: unless-stopped
-    image: postgres:17
+    image: postgres:18
     command:
       - "postgres"
       - "-c"

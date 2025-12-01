@@ -14,28 +14,28 @@
 repos:
   # Autoupdate: Python code
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.20.0
+    rev: v3.21.2
     hooks:
       - id: pyupgrade
         args: [--py39-plus]
 
   # Automatically sort python imports
   - repo: https://github.com/PyCQA/isort
-    rev: 6.1.0
+    rev: 7.0.0
     hooks:
       - id: isort
         args: [--profile, black]
 
   # Autoformat: Python code
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 25.9.0
+    rev: 25.11.0
     hooks:
       - id: black
         args: [--target-version=py39]
 
   # Check python code static typing
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.18.2
+    rev: v1.19.0
     hooks:
       - id: mypy
         args: [--config, ./mypy.ini]
@@ -63,7 +63,7 @@ repos:
 
   # Autoformat: YAML, JSON, Markdown, etc.
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: v3.6.2
+    rev: v3.7.3
     hooks:
       - id: prettier
 
@@ -124,14 +124,14 @@ repos:
 
   # Lint: Markdown
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.45.0
+    rev: v0.46.0
     hooks:
       - id: markdownlint
         args: ["--fix"]
 
   # Strip output from Jupyter notebooks
   - repo: https://github.com/kynan/nbstripout
-    rev: 0.8.1
+    rev: 0.8.2
     hooks:
       - id: nbstripout
 

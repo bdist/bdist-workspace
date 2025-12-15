@@ -132,7 +132,7 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 
 ## FAQ and Troubleshooting
 
-### I get an initdb: error: directory "/var/lib/postgresql/data" exists but is not empty
+### I get an initdb: error: directory "/var/lib/postgresql" exists but is not empty
 
 You need to delete the data volume used by postgres and recreate it.
 

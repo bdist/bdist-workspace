@@ -91,6 +91,8 @@ services:
       - "checkpoint_timeout=15min"
       - "-c"
       - "shared_preload_libraries=pg_stat_statements,pg_duckdb"
+      - "-c"
+      - "duckdb.postgres_role=duckdb_group"
     shm_size: "256m"
     volumes:
       - pgduckdb_data:/var/lib/postgresql:Z

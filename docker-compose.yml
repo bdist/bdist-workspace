@@ -2,6 +2,7 @@
 # Distributed under the terms of the Modified BSD License.
 volumes:
   pg_data: {}
+  pgduckdb_data: {}
   pgadmin_data: {}
   redis_data: {}
 
@@ -70,6 +71,36 @@ services:
       timeout: 5s
       retries: 10
       start_period: 20s
+    networks:
+      - bdist-workspace-network
+
+  pgduckdb:
+    restart: unless-stopped
+    image: pgduckdb/pgduckdb:18-main
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_buffers=1GB"
+      - "-c"
+      - "work_mem=8MB"
+      - "-c"
+      - "wal_compression=on"
+      - "-c"
+      - "max_wal_size=2GB"
+      - "-c"
+      - "checkpoint_timeout=15min"
+      - "-c"
+      - "shared_preload_libraries=pg_stat_statements"
+    shm_size: "256m"
+    volumes:
+      - pgduckdb_data:/var/lib/postgresql:Z
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 5433:5432
     networks:
       - bdist-workspace-network
 

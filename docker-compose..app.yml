@@ -9,15 +9,16 @@ services:
   notebook:
     restart: unless-stopped
     image: quay.io/bdist/notebook:latest
+    init: true
     volumes:
       - ../app:/home/jovyan/app
       - ./data:/home/jovyan/data
       - ./images:/home/jovyan/images
       - ./work:/home/jovyan/work
     environment:
-      - JUPYTER_PORT=9999
+      - JUPYTER_PORT=${JUPYTER_PORT:-9999}
     ports:
-      - 9999:9999
+      - "${JUPYTER_PORT:-9999}:${JUPYTER_PORT:-9999}"
     networks:
       - bdist-workspace-network
 
@@ -29,9 +30,15 @@ services:
       - --appendonly
       - "yes"
     ports:
-      - 6379:6379
+      - "${REDIS_PORT:-6379}:6379"
     volumes:
       - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     networks:
       - bdist-workspace-network
 
@@ -43,39 +50,52 @@ services:
       - "-c"
       - "config_file=/etc/postgresql/postgresql.conf"
     shm_size: "256m"
+    stop_grace_period: 30s
     volumes:
       - pg_data:/var/lib/postgresql:Z
       - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
       - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
     ports:
-      - 5432:5432
+      - "${POSTGRES_PORT:-5432}:5432"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'pg_isready -h 127.0.0.1 -U "$$POSTGRES_USER" -d "$$POSTGRES_DB" || exit 1',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
     networks:
       - bdist-workspace-network
 
   pgadmin:
     restart: unless-stopped
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     image: dpage/pgadmin4:9
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: pgadmin@tecnico.pt
-      PGADMIN_DEFAULT_PASSWORD: pgadmin
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin@tecnico.pt}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-pgadmin}
       PGADMIN_LISTEN_PORT: 5050
     ports:
-      - 5050:5050
+      - "${PGADMIN_PORT:-5050}:5050"
     networks:
       - bdist-workspace-network
 
   app:
     restart: unless-stopped
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     build:
       context: ../app
       dockerfile: Dockerfile.development
@@ -85,9 +105,9 @@ services:
       FLASK_APP: app
       FLASK_ENV: development
       FLASK_DEBUG: 1
-      FLASK_SECRET_KEY: 66342083928cc29310851e51d931ea35ebb4b5747bd2a33e0d06c3d6047c83c8
+      FLASK_SECRET_KEY: ${FLASK_SECRET_KEY:-66342083928cc29310851e51d931ea35ebb4b5747bd2a33e0d06c3d6047c83c8}
     ports:
-      - 8080:8080
+      - "${APP_PORT:-8080}:8080"
     networks:
       - bdist-workspace-network
 
@@ -102,7 +122,7 @@ services:
     volumes:
       - ./ngrok.yml:/etc/ngrok.yml
     ports:
-      - 4040:4040
+      - "${NGROK_PORT:-4040}:4040"
     networks:
       - bdist-workspace-network
 

@@ -9,3 +9,4 @@ node_modules/
 **/*.db-shm
 **/*.db-wal
 ngrok.yml
+.env

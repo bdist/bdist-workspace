@@ -81,29 +81,29 @@ services:
     command:
       - "postgres"
       - "-c"
-      - "shared_buffers=1GB"
-      - "-c"
-      - "work_mem=8MB"
-      - "-c"
-      - "wal_compression=on"
-      - "-c"
-      - "max_wal_size=2GB"
-      - "-c"
-      - "checkpoint_timeout=15min"
-      - "-c"
-      - "shared_preload_libraries=pg_stat_statements,pg_duckdb"
-      - "-c"
-      - "duckdb.postgres_role=duckdb_group"
+      - "config_file=/etc/postgresql/postgresql.conf"
     shm_size: "256m"
+    stop_grace_period: 30s
     volumes:
       - pgduckdb_data:/var/lib/postgresql:Z
+      - ./postgresql_duckdb.conf:/etc/postgresql/postgresql.conf:ro
       - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
     ports:
-      - 5433:5432
+      - "${POSTGRES_PORT:-5433}:5432"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'pg_isready -h 127.0.0.1 -U "$$POSTGRES_USER" -d "$$POSTGRES_DB" || exit 1',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
     networks:
       - bdist-workspace-network
 
